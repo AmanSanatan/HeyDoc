@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:heydocapp/presentation/login/login_screen.dart';
 import 'package:heydocapp/presentation/register/register_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const RegisterScreen(),
+      home: const LoginScreen(),
     );
   }
 }

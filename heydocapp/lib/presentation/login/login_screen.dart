@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../button_box.dart';
 import '../text_field.dart';
 
 
-
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    const loadingState=false;
+     const loadingState=false;
     
-
+    
     return Scaffold(
-      
-      backgroundColor: const Color.fromARGB(255, 200, 242, 249),
+      backgroundColor: Colors.grey[300],
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              height: height * 0.4,
+              height: height * 0.5,
               alignment: Alignment.center,
               child: const Text(
-                'Get Started!',
+                'Get Well Soon!',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -38,7 +37,7 @@ class RegisterScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  height: height * 0.6,
+                  height: height * 0.5,
                   padding: EdgeInsets.only(
                     right: width * 0.1,
                     left: width * 0.1,
@@ -58,14 +57,6 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       TextInputWidget(
                         controller: TextEditingController(),
-                        texthint: "Enter User Name",
-                        textInputType: TextInputType.name,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: height * 0.5 * 0.05),
-                      ),
-                      TextInputWidget(
-                        controller: TextEditingController(),
                         texthint: "Enter Email",
                         textInputType: TextInputType.emailAddress,
                       ),
@@ -78,33 +69,24 @@ class RegisterScreen extends StatelessWidget {
                         textInputType: TextInputType.text,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: height * 0.5 * 0.05),
-                      ),
-                      TextInputWidget(
-                        controller:
-                            TextEditingController(),
-                        texthint: "Confirm Password",
-                        textInputType: TextInputType.text,
-                      ),
-                      Padding(
                         padding: EdgeInsets.only(top: height * 0.5 * 0.1),
                       ),
                       loadingState
                           // ignore: dead_code
                           ? const SpinKitSpinningLines(
-                              color: Colors.lightBlue,
-                              size: 32,
+                              color: Colors.purple,
+                              size: 64,
                             )
                           : Row(
                               children: [
                                 GestureDetector(
-                                  onTap: (){},
+                                  onTap:(){},
                                   child: Container(
                                     alignment: Alignment.center,
                                     width: width * 0.55,
                                     padding: EdgeInsets.symmetric(
                                       // horizontal: width * 0.2,
-                                      vertical: height * 0.5 * 0.04,
+                                      vertical: height * 0.5 * 0.05,
                                     ),
                                     decoration: const BoxDecoration(
                                       color: Colors.black,
@@ -113,7 +95,7 @@ class RegisterScreen extends StatelessWidget {
                                       ),
                                     ),
                                     child: const Text(
-                                      'Sign Up',
+                                      'Sign In',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -136,7 +118,7 @@ class RegisterScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                              'Already Have An Account?',
+                              'New Here?',
                               style: TextStyle(color: Colors.black),
                             ),
                             const Padding(padding: EdgeInsets.only(right: 8)),
@@ -145,7 +127,7 @@ class RegisterScreen extends StatelessWidget {
                                 
                               },
                               child: const Text(
-                                'Login',
+                                'Create Account',
                                 style: TextStyle(color: Colors.blue),
                               ),
                             ),
