@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:heydocapp/main.dart';
 
 import '../button_box.dart';
 import '../text_field.dart';
 
-class RegisterScreen extends ConsumerWidget {
-  const RegisterScreen({super.key});
+
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final registerScreenVM = ref.watch(registerScreenVMProvider);
-
+     const loadingState=false;
+    
+    
     return Scaffold(
-      
-      backgroundColor: Color.fromARGB(255, 200, 242, 249),
+      backgroundColor: Colors.grey[300],
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              height: height * 0.4,
+              height: height * 0.5,
               alignment: Alignment.center,
               child: const Text(
-                'Get Started!',
+                'Get Well Soon!',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -37,7 +37,7 @@ class RegisterScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  height: height * 0.6,
+                  height: height * 0.5,
                   padding: EdgeInsets.only(
                     right: width * 0.1,
                     left: width * 0.1,
@@ -56,15 +56,7 @@ class RegisterScreen extends ConsumerWidget {
                         padding: EdgeInsets.only(top: height * 0.05),
                       ),
                       TextInputWidget(
-                        controller: registerScreenVM.userNameTextController,
-                        texthint: "Enter User Name",
-                        textInputType: TextInputType.name,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: height * 0.5 * 0.05),
-                      ),
-                      TextInputWidget(
-                        controller: registerScreenVM.emailTextController,
+                        controller: TextEditingController(),
                         texthint: "Enter Email",
                         textInputType: TextInputType.emailAddress,
                       ),
@@ -72,39 +64,29 @@ class RegisterScreen extends ConsumerWidget {
                         padding: EdgeInsets.only(top: height * 0.5 * 0.05),
                       ),
                       TextInputWidget(
-                        controller: registerScreenVM.passwordTextController,
+                        controller: TextEditingController(),
                         texthint: "Enter Password",
-                        textInputType: TextInputType.text,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: height * 0.5 * 0.05),
-                      ),
-                      TextInputWidget(
-                        controller:
-                            registerScreenVM.confirmPasswordTextController,
-                        texthint: "Confirm Password",
                         textInputType: TextInputType.text,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: height * 0.5 * 0.1),
                       ),
-                      registerScreenVM.loadingState
+                      loadingState
+                          // ignore: dead_code
                           ? const SpinKitSpinningLines(
-                              color: Colors.lightBlue,
-                              size: 32,
+                              color: Colors.purple,
+                              size: 64,
                             )
                           : Row(
                               children: [
                                 GestureDetector(
-                                  onTap: () {
-                                    registerScreenVM.emailRegister();
-                                  },
+                                  onTap:(){},
                                   child: Container(
                                     alignment: Alignment.center,
                                     width: width * 0.55,
                                     padding: EdgeInsets.symmetric(
                                       // horizontal: width * 0.2,
-                                      vertical: height * 0.5 * 0.04,
+                                      vertical: height * 0.5 * 0.05,
                                     ),
                                     decoration: const BoxDecoration(
                                       color: Colors.black,
@@ -113,7 +95,7 @@ class RegisterScreen extends ConsumerWidget {
                                       ),
                                     ),
                                     child: const Text(
-                                      'Sign Up',
+                                      'Sign In',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -126,9 +108,7 @@ class RegisterScreen extends ConsumerWidget {
                                     padding:
                                         EdgeInsets.only(left: width * 0.08)),
                                 GestureDetector(
-                                    onTap: () {
-                                      registerScreenVM.googleRegister();
-                                    },
+                                    onTap: (){},
                                     child: const ButtonBox(
                                         imagePath: 'lib/images/google.png')),
                               ],
@@ -138,14 +118,16 @@ class RegisterScreen extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Text(
-                              'Already Have An Account?',
+                              'New Here?',
                               style: TextStyle(color: Colors.black),
                             ),
                             const Padding(padding: EdgeInsets.only(right: 8)),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                
+                              },
                               child: const Text(
-                                'Login',
+                                'Create Account',
                                 style: TextStyle(color: Colors.blue),
                               ),
                             ),
