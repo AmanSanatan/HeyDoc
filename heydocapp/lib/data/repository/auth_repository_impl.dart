@@ -46,4 +46,41 @@ class AuthRepositoryImpl extends AuthRepository {
   Future logout() {
     return FirebaseAuth.instance.signOut();
   }
+
+  @override
+  Future<AuthResponse> emailLogin(String email, String password) async {
+    try {
+      var result = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return AuthResponse.success(result);
+    } on FirebaseAuthException catch (e) {
+      return AuthResponse.faliure(e.message ?? 'some error occured');
+    } catch (e) {
+      return const AuthResponse.faliure('some error occured');
+    }
+  }
+
+  @override
+  Future<AuthResponse> googleLogin() async {
+    try {
+      final GoogleSignInAccount? newGoogleUser = await GoogleSignIn().signIn();
+      if (newGoogleUser != null) {
+        final GoogleSignInAuthentication googleAuth =
+            await newGoogleUser.authentication;
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        var result =
+            await FirebaseAuth.instance.signInWithCredential(credential);
+        return AuthResponse.success(result);
+      } else {
+        return const AuthResponse.faliure("please select a account");
+      }
+    } on FirebaseAuthException catch (e) {
+      return AuthResponse.faliure(e.message ?? 'some error occured');
+    } catch (e) {
+      return const AuthResponse.faliure('some error occured');
+    }
+  }
 }

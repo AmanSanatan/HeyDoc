@@ -7,6 +7,8 @@ final authRepositoryProvider = Provider<AuthRepositoryImpl>((ref) {
 });
 
 abstract class AuthRepository {
+  Future emailLogin(String email, String password);
+  Future googleLogin();
   Future emailRegister(String email, String password);
   Future googleRegister();
   Future logout();

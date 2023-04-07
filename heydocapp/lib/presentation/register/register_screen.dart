@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:heydocapp/main.dart';
+import 'package:heydocapp/presentation/login/login_screen.dart';
 
 import '../button_box.dart';
 import '../text_field.dart';
@@ -16,8 +17,7 @@ class RegisterScreen extends ConsumerWidget {
     final registerScreenVM = ref.watch(registerScreenVMProvider);
 
     return Scaffold(
-      
-      backgroundColor: Color.fromARGB(255, 200, 242, 249),
+      backgroundColor: const Color.fromARGB(255, 200, 242, 249),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -143,7 +143,13 @@ class RegisterScreen extends ConsumerWidget {
                             ),
                             const Padding(padding: EdgeInsets.only(right: 8)),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                  return const LoginScreen();
+                                }));
+                              },
                               child: const Text(
                                 'Login',
                                 style: TextStyle(color: Colors.blue),

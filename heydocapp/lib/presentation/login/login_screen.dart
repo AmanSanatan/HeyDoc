@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:heydocapp/presentation/login/login_screen_vm.dart';
+import 'package:heydocapp/presentation/register/register_screen.dart';
 
 import '../button_box.dart';
 import '../text_field.dart';
 
-
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-     const loadingState=false;
-    
-    
+    final loginScreenVM = ref.watch(loginScreenVMProvider);
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SingleChildScrollView(
@@ -56,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top: height * 0.05),
                       ),
                       TextInputWidget(
-                        controller: TextEditingController(),
+                        controller: loginScreenVM.emailTextController,
                         texthint: "Enter Email",
                         textInputType: TextInputType.emailAddress,
                       ),
@@ -64,14 +63,14 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top: height * 0.5 * 0.05),
                       ),
                       TextInputWidget(
-                        controller: TextEditingController(),
+                        controller: loginScreenVM.passwordTextController,
                         texthint: "Enter Password",
                         textInputType: TextInputType.text,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: height * 0.5 * 0.1),
                       ),
-                      loadingState
+                      loginScreenVM.loadingState
                           // ignore: dead_code
                           ? const SpinKitSpinningLines(
                               color: Colors.purple,
@@ -80,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                           : Row(
                               children: [
                                 GestureDetector(
-                                  onTap:(){},
+                                  onTap: loginScreenVM.emailLogin,
                                   child: Container(
                                     alignment: Alignment.center,
                                     width: width * 0.55,
@@ -108,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                                     padding:
                                         EdgeInsets.only(left: width * 0.08)),
                                 GestureDetector(
-                                    onTap: (){},
+                                    onTap: loginScreenVM.googleLogin,
                                     child: const ButtonBox(
                                         imagePath: 'lib/images/google.png')),
                               ],
@@ -124,7 +123,11 @@ class LoginScreen extends StatelessWidget {
                             const Padding(padding: EdgeInsets.only(right: 8)),
                             GestureDetector(
                               onTap: () {
-                                
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                  return const RegisterScreen();
+                                }));
                               },
                               child: const Text(
                                 'Create Account',
