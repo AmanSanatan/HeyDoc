@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:heydocapp/main.dart';
 
-import '../../button_box.dart';
+import '../button_box.dart';
 import '../text_field.dart';
 
-
-
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends ConsumerWidget {
   const RegisterScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    const loadingState=false;
-    
+    final registerScreenVM = ref.watch(registerScreenVMProvider);
 
     return Scaffold(
-      
-      backgroundColor: Color.fromARGB(255, 200, 242, 249),
+      backgroundColor: const Color.fromARGB(255, 200, 242, 249),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -57,7 +55,7 @@ class RegisterScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top: height * 0.05),
                       ),
                       TextInputWidget(
-                        controller: TextEditingController(),
+                        controller: registerScreenVM.userNameTextController,
                         texthint: "Enter User Name",
                         textInputType: TextInputType.name,
                       ),
@@ -65,7 +63,7 @@ class RegisterScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top: height * 0.5 * 0.05),
                       ),
                       TextInputWidget(
-                        controller: TextEditingController(),
+                        controller: registerScreenVM.emailTextController,
                         texthint: "Enter Email",
                         textInputType: TextInputType.emailAddress,
                       ),
@@ -73,7 +71,7 @@ class RegisterScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top: height * 0.5 * 0.05),
                       ),
                       TextInputWidget(
-                        controller: TextEditingController(),
+                        controller: registerScreenVM.passwordTextController,
                         texthint: "Enter Password",
                         textInputType: TextInputType.text,
                       ),
@@ -82,15 +80,14 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       TextInputWidget(
                         controller:
-                            TextEditingController(),
+                            registerScreenVM.confirmPasswordTextController,
                         texthint: "Confirm Password",
                         textInputType: TextInputType.text,
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: height * 0.5 * 0.1),
                       ),
-                      loadingState
-                          // ignore: dead_code
+                      registerScreenVM.loadingState
                           ? const SpinKitSpinningLines(
                               color: Colors.lightBlue,
                               size: 32,
@@ -98,7 +95,9 @@ class RegisterScreen extends StatelessWidget {
                           : Row(
                               children: [
                                 GestureDetector(
-                                  onTap: (){},
+                                  onTap: () {
+                                    registerScreenVM.emailRegister();
+                                  },
                                   child: Container(
                                     alignment: Alignment.center,
                                     width: width * 0.55,
@@ -126,7 +125,9 @@ class RegisterScreen extends StatelessWidget {
                                     padding:
                                         EdgeInsets.only(left: width * 0.08)),
                                 GestureDetector(
-                                    onTap: (){},
+                                    onTap: () {
+                                      registerScreenVM.googleRegister();
+                                    },
                                     child: const ButtonBox(
                                         imagePath: 'lib/images/google.png')),
                               ],
@@ -141,9 +142,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             const Padding(padding: EdgeInsets.only(right: 8)),
                             GestureDetector(
-                              onTap: () {
-                                
-                              },
+                              onTap: () {},
                               child: const Text(
                                 'Login',
                                 style: TextStyle(color: Colors.blue),

@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Dart",
+            "type": "dart",
+            "request": "launch",
+            "program": "bin/main.dart"
+        },
+        {
+            "name": "heydocapp",
+            "cwd": "heydocapp",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "heydocapp (profile mode)",
+            "cwd": "heydocapp",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "heydocapp (release mode)",
+            "cwd": "heydocapp",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
