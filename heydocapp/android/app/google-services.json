@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "1048303927122-oh2unnnm38irp68so7lb1cloi0jqa975.apps.googleusercontent.com",
+          "client_id": "1048303927122-atpcfbup0a1la79fpsv3hgav9fndpppk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.heydocapp",
+            "certificate_hash": "da0247f9cc588bf8a50bdfc4b0ef3a339478cdf9"
+          }
+        },
+        {
+          "client_id": "1048303927122-lho5cat4bics2hmhkncj9rsfn8r71t74.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +35,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1048303927122-oh2unnnm38irp68so7lb1cloi0jqa975.apps.googleusercontent.com",
+              "client_id": "1048303927122-lho5cat4bics2hmhkncj9rsfn8r71t74.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1048303927122-ci2tmdeq96c9e0kk2jvqbtp1m4k9f2en.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.heydocapp"
+              }
             }
           ]
         }
