@@ -1,4 +1,10 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import '../repository/auth_repository.dart';
+
+final registerUsecaseProvider = Provider((ref) {
+  return RegisterUsecase(ref.read(authRepositoryProvider));
+});
 
 class RegisterUsecase {
   RegisterUsecase(this.authRepository);
