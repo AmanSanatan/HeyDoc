@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1048303927122",
+    "project_id": "heydoc-2f2ba",
+    "storage_bucket": "heydoc-2f2ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048303927122:android:2b9b4b9dbf2a3a03cf448b",
+        "android_client_info": {
+          "package_name": "com.example.heydocapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048303927122-oh2unnnm38irp68so7lb1cloi0jqa975.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfaDqgCx7lFdspq7ZxkB7caoHVhfFyMwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048303927122-oh2unnnm38irp68so7lb1cloi0jqa975.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
