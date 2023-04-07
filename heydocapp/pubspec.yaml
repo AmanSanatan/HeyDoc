@@ -41,6 +41,8 @@ dependencies:
   google_sign_in: ^6.0.2
   firebase_auth: ^4.2.10
   freezed_annotation: ^2.2.0
+  liquid_pull_to_refresh: ^3.0.1
+  image_picker: ^0.8.7+1
 
 dev_dependencies:
   flutter_test:
