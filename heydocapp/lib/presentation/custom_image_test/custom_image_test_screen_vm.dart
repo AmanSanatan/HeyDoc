@@ -62,16 +62,19 @@ class CustomImageTestScreenVM extends ChangeNotifier {
   Future _uploadWaveImage(XFile image) async {
     toggleLoadingState();
     final user = await getUserUsecase.getUser();
-    spiralImageUrl = await postPicFirebaseUsecase.postPic(
+    waveImageUrl = await postPicFirebaseUsecase.postPic(
         File(image.path), user?.uid, PictureType.wave);
     toggleLoadingState();
   }
 
-  Future runModel(
-      String spiralFileLink, String waveFileLink, String uid) async {
+  Future runModel() async {
     toggleLoadingState();
-    final result =
-        await _runModelUsecase.runModel(spiralFileLink, waveFileLink, uid);
+    final user = await getUserUsecase.getUser();
+    if (spiralImageUrl == null || waveImageUrl == null || user == null) {
+      return;
+    }
+    final result = await _runModelUsecase.runModel(
+        spiralImageUrl!, waveImageUrl!, user.uid);
     if (result == 1) {
       outputText = 'YOU ARE ADVISED TO SEE A DOCTOR IMMEDEATLY';
     } else if (result == 0) {
