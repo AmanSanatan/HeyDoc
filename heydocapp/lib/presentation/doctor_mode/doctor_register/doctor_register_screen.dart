@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
+import 'package:heydocapp/presentation/doctor_mode/doctor_register/doctor_register_screen_vm.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../domain/models/clinic_model.dart';
+import '../../../domain/models/doctor_model.dart';
 import '../../../domain/models/patient_model.dart';
-
 import '../../text_field.dart';
-const loadingState=false;
 
 class DoctorRegisterScreen extends ConsumerStatefulWidget {
   final PatientModel _patientModel;
@@ -22,7 +22,14 @@ class DoctorRegisterScreen extends ConsumerStatefulWidget {
 class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
   @override
   void initState() {
- 
+    doctorName.text = widget._patientModel.name;
+    doctorEmail.text = widget._patientModel.email;
+    ref.read(doctorRegisterScreenVMProvider).patientModel =
+        widget._patientModel;
+    ref.read(doctorRegisterScreenVMProvider).doctorImageUrl =
+        widget._patientModel.pictureLink;
+    ref.read(doctorRegisterScreenVMProvider).clinicImageUrl =
+        widget._patientModel.pictureLink;
     super.initState();
   }
 
@@ -42,13 +49,13 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    
+    final doctorRegisterScreenVM = ref.watch(doctorRegisterScreenVMProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register as a doctor!'),
       ),
       backgroundColor: Colors.white,
-      body : loadingState
+      body: doctorRegisterScreenVM.isLoading
           ? const Center(
               child: SpinKitSpinningLines(
                 color: Colors.purple,
@@ -125,7 +132,9 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        
+                                        doctorRegisterScreenVM.pickDoctorImage(
+                                          ImageSource.camera,
+                                        );
                                       },
                                       child: const ListTile(
                                         leading: Icon(Icons.camera),
@@ -134,7 +143,9 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                        
+                                        doctorRegisterScreenVM.pickDoctorImage(
+                                          ImageSource.gallery,
+                                        );
                                       },
                                       child: const ListTile(
                                         leading: Icon(Icons.photo),
@@ -155,7 +166,7 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height * 0.4,
                               child: Image.network(
-                                "",
+                                doctorRegisterScreenVM.doctorImageUrl,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -178,7 +189,9 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                       
+                                        doctorRegisterScreenVM.pickClinicImage(
+                                          ImageSource.camera,
+                                        );
                                       },
                                       child: const ListTile(
                                         leading: Icon(Icons.camera),
@@ -187,7 +200,9 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
                                     ),
                                     GestureDetector(
                                       onTap: () {
-                                       
+                                        doctorRegisterScreenVM.pickClinicImage(
+                                          ImageSource.gallery,
+                                        );
                                       },
                                       child: const ListTile(
                                         leading: Icon(Icons.photo),
@@ -208,7 +223,7 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height * 0.4,
                               child: Image.network(
-                                "",
+                                doctorRegisterScreenVM.clinicImageUrl,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -223,7 +238,26 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        
+                        final clinicModel = ClinicModel(
+                            clinicName: clinicName.text,
+                            doctorName: doctorName.text,
+                            doctorImage: doctorRegisterScreenVM.doctorImageUrl,
+                            lat: '',
+                            lng: '',
+                            pictureLink: doctorRegisterScreenVM.clinicImageUrl,
+                            phoneNumber: phoneNumber.text,
+                            description: description.text,
+                            rating: '0',
+                            doctorUid: doctorRegisterScreenVM.patientModel.uid,
+                            price: bookingPrice.text);
+                        final doctorModel = DoctorModel(
+                            name: doctorName.text,
+                            email: doctorEmail.text,
+                            pictureLink: doctorRegisterScreenVM.doctorImageUrl,
+                            clinic: clinicModel,
+                            uid: doctorRegisterScreenVM.patientModel.uid,
+                            balance: '0');
+                        doctorRegisterScreenVM.postDoctor(doctorModel);
                       },
                       child: Container(
                         alignment: Alignment.center,

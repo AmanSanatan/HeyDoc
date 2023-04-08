@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:heydocapp/presentation/painting/paint_screen.dart';
+import 'package:heydocapp/presentation/login/login_screen.dart';
 import 'package:heydocapp/presentation/register/register_screen_vm.dart';
 
 import 'domain/usecase/httppost_patient_usecase.dart';
@@ -55,7 +55,7 @@ class MyApp extends ConsumerWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: PaintScreen(),
+      home: const LoginScreen(),
     );
   }
 }
