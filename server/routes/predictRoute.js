@@ -32,6 +32,7 @@ predictRoute.post('/:id',async(req,res)=>{
     python.on('close',(code)=>{
         console.log(`child process exited with code ${code}`);
         deleteLocalImage(id);
+        console.log(predict);
         res.send(predict);
     })
 })

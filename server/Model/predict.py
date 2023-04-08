@@ -43,7 +43,7 @@ def sp_predict(img):
     pr2 = sp_mod2.predict(arr_a)
     pr3 = sp_mod3.predict(arr_a)
     pr = (pr1 + pr2 + pr3)/3
-    pr = thresh_predict(pr)
+    pr = thresh_predict(pr,0.5)
     return(pr)
 
 def wa_predict(img):
@@ -59,7 +59,7 @@ def wa_predict(img):
     return(pr)
 
 def predict(spiralimg, waveimg):
-    avg = int((sp_predict(spiralimg) or wa_predict(waveimg)))
+    avg = int((sp_predict(spiralimg) + 2*wa_predict(waveimg)))
     return avg
 
 def caller():
