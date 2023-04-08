@@ -31,9 +31,14 @@ def thresh_crop(image,val=40,margin=5,size=(100,100)):
     # Show in a window
     cropped_image = src[max(y,max(0,y-margin)):min(Y,y+h+margin), max(x,max(0,x-margin)):min(X,x+w+margin)]
     # print([x,y,w,h])
-    # cv.imshow("cropped",cropped_image)
-    out = cv.resize(cropped_image,size)
-    # out = cv.cvtColor(out, cv.COLOR_BGR2RGB)
+    
+    cropped_image = cv.resize(cropped_image,size)
+    out = cv.cvtColor(cropped_image, cv.COLOR_BGR2RGB)
     out = convert_single(out)
+    # cv.imwrite("C:/Users/abhij/Downloads/Spiral_out.jpeg",out)
+    # cv.imshow("cropped",out)
+    # cv.waitKey(0)
     out = Image.fromarray(out)
     return out
+
+# thresh_crop("C:/Users/abhij/Downloads/Spiral.jpeg",margin=10)
