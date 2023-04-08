@@ -63,7 +63,7 @@ class ResultScreenVM extends ChangeNotifier {
       modelOutputText = 'YOU ARE ADVISED TO SEE A DOCTOR IMMEDEATLY';
     } else if (result == 0) {
       modelOutputText =
-          'If you are observing other parkinson symptoms , then we recommend you to see a doctor';
+          'You seem fit according to our tests. Still, if you are observing other parkinson symptoms , then we recommend you to see a doctor';
     }
     print('aapko itna parkinson hain : $result');
     toggleLoadingState();
