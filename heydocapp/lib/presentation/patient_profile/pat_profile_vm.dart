@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -48,7 +47,6 @@ class PatientProfileVM extends ChangeNotifier {
 
   PatientModel? patientModel;
   bool isLoading = false;
-  Codec<String, String> stringToBase64 = utf8.fuse(base64);
 
   void logout() {
     _logoutUsecase.logout();

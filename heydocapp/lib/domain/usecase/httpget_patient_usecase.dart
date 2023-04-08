@@ -12,9 +12,6 @@ class GetPatientUsecase {
   Future getPatient(String uid) async {
     final uri = '/patient/$uid';
     var response = await _httpRepo.get(uri);
-    if (response == 'try again') {
-      return response;
-    }
     return PatientModel.fromJson(response);
   }
 }
