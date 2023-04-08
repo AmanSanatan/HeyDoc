@@ -5,13 +5,12 @@ import 'package:heydocapp/presentation/painting/uitls/page_events.dart';
 import 'package:heydocapp/presentation/painting/uitls/sealed_paint_events.dart';
 import 'package:screenshot/screenshot.dart';
 
+import '../custom_image_test/custom_image_test_screen.dart';
 import 'components/my_clipper.dart';
 import 'components/path_custom_painter.dart';
 
 class PaintScreen extends ConsumerWidget {
   PaintScreen({super.key});
-
-  // List<Path> paths = [];
   final controller = ScreenshotController();
 
   @override
@@ -26,6 +25,16 @@ class PaintScreen extends ConsumerWidget {
         title: paintScreenVM.pageNumber == 0
             ? const Text("Draw a Spiral")
             : const Text("Draw a wave"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return const CustomImageTestScreen();
+                }));
+              },
+              icon: const Icon(Icons.edit_document))
+        ],
       ),
       backgroundColor: Colors.deepPurple[100],
       body: Stack(children: [
