@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/main.dart';
+import 'package:heydocapp/presentation/login/login_screen.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../domain/models/patient_model.dart';
@@ -50,6 +51,10 @@ class PatientProfileVM extends ChangeNotifier {
 
   void logout() {
     _logoutUsecase.logout();
+    navigatorKey.currentState
+        ?.pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+      return const LoginScreen();
+    }));
   }
 
   void toggleLoadingState() {
