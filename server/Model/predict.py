@@ -64,5 +64,5 @@ def predict(spiralimg, waveimg):
 
 def caller():
     print(predict(os.path.join(dirname,"data\\"+str(sys.argv[1])+"_spiral.png"),os.path.join(dirname,"data\\"+str(sys.argv[1])+"_wave.png")))
-    # print(predict(os.path.join(dirname,"data\\" + "uid3" +"_spiral.png"),os.path.join(dirname,"data\\"+"uid3"+"_wave.png")))
+    #print(predict(os.path.join(dirname,"data\\" + "uid1" +"_spiral.png"),os.path.join(dirname,"data\\"+"uid1"+"_wave.png")))
 caller()
