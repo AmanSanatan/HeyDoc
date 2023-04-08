@@ -9,15 +9,15 @@ class_dir = ["Healthy","Parkinson"]
 
 dirname = os.path.dirname(__file__)
 
-sp_mod1 = load_model(os.path.join(dirname,"VGG16_sp.h5"),compile=False)
-wa_mod1 = load_model(os.path.join(dirname,"VGG16_wa.h5"),compile=False)
-sp_mod1.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
-wa_mod1.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+# sp_mod1 = load_model(os.path.join(dirname,"VGG16_sp.h5"),compile=False)
+# wa_mod1 = load_model(os.path.join(dirname,"VGG16_wa.h5"),compile=False)
+# sp_mod1.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+# wa_mod1.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
-sp_mod2 = load_model(os.path.join(dirname,"MobileNetV2_sp.h5"),compile=False)
-wa_mod2 = load_model(os.path.join(dirname,"MobileNetV2_wa.h5"),compile=False)
-sp_mod2.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
-wa_mod2.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+# sp_mod2 = load_model(os.path.join(dirname,"MobileNetV2_sp.h5"),compile=False)
+# wa_mod2 = load_model(os.path.join(dirname,"MobileNetV2_wa.h5"),compile=False)
+# sp_mod2.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+# wa_mod2.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
 sp_mod3 = load_model(os.path.join(dirname,"DenseNet201_sp.h5"),compile=False)
 wa_mod3 = load_model(os.path.join(dirname,"DenseNet201_wa.h5"),compile=False)
@@ -39,11 +39,11 @@ def sp_predict(img):
     # img.show()
     norm_a=img_to_array(img)/255.0
     arr_a=np.array([norm_a])
-    pr1 = sp_mod1.predict(arr_a)
-    pr2 = sp_mod2.predict(arr_a)
+    # pr1 = sp_mod1.predict(arr_a)
+    # pr2 = sp_mod2.predict(arr_a)
     pr3 = sp_mod3.predict(arr_a)
-    pr = (pr1 + pr2 + pr3)/3
-    pr = thresh_predict(pr,0.5)
+    # pr = (pr1 + pr2 + pr3)/3
+    pr = thresh_predict(pr3,0.5)
     return(pr)
 
 def wa_predict(img):
@@ -51,11 +51,11 @@ def wa_predict(img):
     # img.show()
     norm_b=img_to_array(img)/255.0
     arr_b=np.array([norm_b])
-    pr1 = wa_mod1.predict(arr_b)
-    pr2 = wa_mod2.predict(arr_b)
+    # pr1 = wa_mod1.predict(arr_b)
+    # pr2 = wa_mod2.predict(arr_b)
     pr3 = wa_mod3.predict(arr_b)
-    pr = (pr1 + pr2 + pr3)/3
-    pr = thresh_predict(pr,0.50)
+    # pr = (pr1 + pr2 + pr3)/3
+    pr = thresh_predict(pr3,0.50)
     return(pr)
 
 def predict(spiralimg, waveimg):
