@@ -18,5 +18,7 @@ mongoose.connect(uri,  {
     .catch((err)=>{
         console.log(err);
     })
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 app.use('/patient',patientRoute);
 app.use('/doctor',doctorRoute);
