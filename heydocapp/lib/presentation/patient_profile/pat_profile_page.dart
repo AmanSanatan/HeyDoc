@@ -3,18 +3,18 @@ import 'dart:ui' as UI;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:heydocapp/presentation/patient_profile/pat_profile_vm.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class PatientProfilePage extends ConsumerWidget {
   const PatientProfilePage({super.key});
-final isLoading = false;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
+    final patientProfilePageVM = ref.watch(patientProfileVMProvider);
     return Scaffold(
       body: Stack(children: [
-        isLoading
+        patientProfilePageVM.isLoading
             ? const Center(
                 child: SpinKitSpinningLines(
                 color: Colors.purple,
@@ -22,7 +22,7 @@ final isLoading = false;
               ))
             : LiquidPullToRefresh(
                 onRefresh: () {
-                  return Future(() => null);
+                  return patientProfilePageVM.getPatient();
                 },
                 child: SafeArea(
                   child: NestedScrollView(
@@ -33,13 +33,12 @@ final isLoading = false;
                           leading: IconButton(
                               icon: const Icon(Icons.logout_outlined),
                               onPressed: () {
+                                patientProfilePageVM.logout();
                               }),
                           actions: [
                             IconButton(
                                 icon: const Icon(Icons.local_hospital),
-                                onPressed: () {
-                                  
-                                }),
+                                onPressed: () {}),
                           ],
                           title: const Text("MY PROFILE"),
                           centerTitle: true,
@@ -55,6 +54,8 @@ final isLoading = false;
                                   height: 300,
                                   width: MediaQuery.of(context).size.width,
                                   child: Image.network(
+                                    patientProfilePageVM
+                                            .patientModel?.pictureLink ??
                                         'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                                     fit: BoxFit.cover,
                                   ),
@@ -76,9 +77,11 @@ final isLoading = false;
                                                     Column(
                                                       children: [
                                                         GestureDetector(
-                                                          onTap: () async{
-                                                            final ImagePicker picker = ImagePicker();
-                                                            final XFile? image = await picker.pickImage(source : ImageSource.camera);
+                                                          onTap: () async {
+                                                            patientProfilePageVM
+                                                                .pickImage(
+                                                                    ImageSource
+                                                                        .camera);
                                                           },
                                                           child: const ListTile(
                                                             leading: Icon(
@@ -88,9 +91,11 @@ final isLoading = false;
                                                           ),
                                                         ),
                                                         GestureDetector(
-                                                          onTap: () async{
-                                                            final ImagePicker picker = ImagePicker();
-                                                            final XFile? image = await picker.pickImage(source : ImageSource.gallery);
+                                                          onTap: () async {
+                                                            patientProfilePageVM
+                                                                .pickImage(
+                                                                    ImageSource
+                                                                        .gallery);
                                                           },
                                                           child: const ListTile(
                                                             leading: Icon(
@@ -110,7 +115,8 @@ final isLoading = false;
                                                 .size
                                                 .width,
                                             child: Image.network(
-                                             
+                                              patientProfilePageVM.patientModel
+                                                      ?.pictureLink ??
                                                   'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                                               fit: BoxFit.contain,
                                             ),
@@ -122,6 +128,8 @@ final isLoading = false;
                                           ),
                                         ),
                                         Text(
+                                          patientProfilePageVM
+                                                  .patientModel?.name ??
                                               'Name',
                                           style: const TextStyle(
                                               fontSize: 20,
@@ -129,6 +137,8 @@ final isLoading = false;
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
+                                          patientProfilePageVM
+                                                  .patientModel?.email ??
                                               'Email',
                                           style: const TextStyle(
                                             fontSize: 16,
@@ -152,31 +162,27 @@ final isLoading = false;
                           return ListTile(
                             leading: CircleAvatar(
                               backgroundColor: Colors.white,
-                              child: Column(children: [
-                                Text(
-                                    "12:00"),
-                                Text(
-                                    "AM"),
+                              child: Column(children: const [
+                                Text("12:00"),
+                                Text("AM"),
                               ]),
                             ),
-                            title: Text(
-                               'doctor',
-                              style: const TextStyle(
+                            title: const Text(
+                              'doctor',
+                              style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
-                            subtitle: Text(
-                               'clinic',
-                              style: const TextStyle(
+                            subtitle: const Text(
+                              'clinic',
+                              style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,
                               ),
                             ),
                             trailing: TextButton(
-                              onPressed: () {
-                                
-                              },
+                              onPressed: () {},
                               child: const Text(
                                 "JOIN",
                                 style: TextStyle(color: Colors.lightBlue),

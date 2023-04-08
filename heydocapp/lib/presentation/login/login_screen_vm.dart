@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/main.dart';
+import 'package:heydocapp/presentation/patient_profile/pat_profile_page.dart';
 
 import '../../domain/usecase/login_usecase.dart';
 import '../../utils/auth_response.dart';
 
 final loginScreenVMProvider = ChangeNotifierProvider<LoginScreenVM>((ref) {
-  return LoginScreenVM(
-      ref.read(loginUsecaseProvider), ref.read(scaffoldMessengerKeyProvider));
+  return LoginScreenVM(ref.watch(loginUsecaseProvider),
+      ref.watch(scaffoldMessengerKeyProvider), ref.watch(navigatorKeyProvider));
 });
 
 class LoginScreenVM extends ChangeNotifier {
   final LoginUsecase loginUsecase;
   final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey;
-  LoginScreenVM(this.loginUsecase, this.rootScaffoldMessengerKey);
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  LoginScreenVM(
+      this.loginUsecase, this.rootScaffoldMessengerKey, this.navigatorKey);
 
   final TextEditingController emailTextController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
@@ -29,13 +33,18 @@ class LoginScreenVM extends ChangeNotifier {
     final AuthResponse result = await loginUsecase.emailLogin(
         emailTextController.text, passwordTextController.text);
     result.when(
-      success: (userCredential) =>
-          rootScaffoldMessengerKey.currentState?.showSnackBar(
-        SnackBar(
-          content:
-              Text("Sucessfully logged in as ${userCredential.user?.email}"),
-        ),
-      ),
+      success: (userCredential) {
+        rootScaffoldMessengerKey.currentState?.showSnackBar(
+          SnackBar(
+            content:
+                Text("Sucessfully logged in as ${userCredential.user?.email}"),
+          ),
+        );
+        navigatorKey.currentState?.pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) {
+          return const PatientProfilePage();
+        }));
+      },
       faliure: (message) => rootScaffoldMessengerKey.currentState?.showSnackBar(
         SnackBar(
           content: Text(message),

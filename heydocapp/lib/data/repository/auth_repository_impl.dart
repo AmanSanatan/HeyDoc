@@ -83,4 +83,10 @@ class AuthRepositoryImpl extends AuthRepository {
       return const AuthResponse.faliure('some error occured');
     }
   }
+
+  @override
+  Future<User?> getUser() async {
+    var uid = FirebaseAuth.instance.currentUser;
+    return uid;
+  }
 }
