@@ -76,10 +76,10 @@ class CustomImageTestScreenVM extends ChangeNotifier {
     final result = await _runModelUsecase.runModel(
         spiralImageUrl!, waveImageUrl!, user.uid);
     if (result == 1) {
-      outputText =
-          'If you are observing other parkinson symptoms , then we recommend you to see a doctor';
-    } else if (result == 0) {
       outputText = 'YOU ARE ADVISED TO SEE A DOCTOR IMMEDEATLY';
+    } else if (result == 0) {
+      outputText =
+          'You seem fit according to our tests. Still, if you are observing other parkinson symptoms , then we recommend you to see a doctor';
     }
     print('aapko itna parkinson hain : $result');
     toggleLoadingState();
