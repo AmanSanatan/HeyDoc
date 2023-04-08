@@ -181,6 +181,7 @@ class DoctorHomeScreen extends ConsumerWidget {
                             ),
                           );
                         },
+                        itemCount: bookingList?.length ?? 0,
                       ),
                     ),
                   ),
