@@ -14,6 +14,7 @@ import '../../domain/usecase/httpget_patient_usecase.dart';
 import '../../domain/usecase/httpput_patient_usecase.dart';
 import '../../domain/usecase/logout_usecase.dart';
 import '../../domain/usecase/post_pic_firebase_usecase.dart';
+import '../doctor_mode/doctor_register/doctor_register_screen.dart';
 
 final patientProfileVMProvider = ChangeNotifierProvider((ref) =>
     PatientProfileVM(
@@ -96,5 +97,12 @@ class PatientProfileVM extends ChangeNotifier {
     }
     toggleLoadingState();
     getPatient();
+  }
+
+  void becomeDoctor() {
+    navigatorKey.currentState
+        ?.push(MaterialPageRoute(builder: (BuildContext context) {
+      return DoctorRegisterScreen(patientModel!);
+    }));
   }
 }
