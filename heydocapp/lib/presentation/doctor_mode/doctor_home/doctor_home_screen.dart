@@ -3,21 +3,19 @@ import 'dart:ui' as UI;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
+import 'package:heydocapp/presentation/doctor_mode/doctor_home/doctor_home_screen_vm.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
-const loadingState=false;
-
-class DoctorHomeScreen extends StatelessWidget {
+class DoctorHomeScreen extends ConsumerWidget {
   const DoctorHomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    
-    
+  Widget build(BuildContext context, WidgetRef ref) {
+    final doctorHomeScreenVM = ref.watch(doctorHomeScreenVMProvider);
+    final bookingList = doctorHomeScreenVM.doctorModel?.bookings;
     return Scaffold(
       body: Stack(children: [
-        loadingState
+        doctorHomeScreenVM.isLoading
             ? const Center(
                 child: SpinKitSpinningLines(
                 color: Colors.purple,
@@ -25,8 +23,7 @@ class DoctorHomeScreen extends StatelessWidget {
               ))
             : LiquidPullToRefresh(
                 onRefresh: () {
-                  return Future(() => null);
-                  
+                  return doctorHomeScreenVM.getDoctor();
                 },
                 child: SafeArea(
                   child: NestedScrollView(
@@ -44,9 +41,7 @@ class DoctorHomeScreen extends StatelessWidget {
                               itemBuilder: (BuildContext context) {
                                 return [
                                   PopupMenuItem(
-                                    onTap: () {
-                                     
-                                    },
+                                    onTap: () {},
                                     child: Row(
                                       children: const [
                                         Icon(Icons.edit_attributes),
@@ -81,7 +76,8 @@ class DoctorHomeScreen extends StatelessWidget {
                                   height: 300,
                                   width: MediaQuery.of(context).size.width,
                                   child: Image.network(
-                                    
+                                    doctorHomeScreenVM
+                                            .doctorModel?.clinic.pictureLink ??
                                         'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                                     fit: BoxFit.cover,
                                   ),
@@ -98,7 +94,8 @@ class DoctorHomeScreen extends StatelessWidget {
                                           width:
                                               MediaQuery.of(context).size.width,
                                           child: Image.network(
-                                            
+                                            doctorHomeScreenVM.doctorModel
+                                                    ?.clinic.pictureLink ??
                                                 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                                             fit: BoxFit.contain,
                                           ),
@@ -109,7 +106,8 @@ class DoctorHomeScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                         
+                                          doctorHomeScreenVM.doctorModel?.clinic
+                                                  .clinicName ??
                                               'Name',
                                           style: const TextStyle(
                                               fontSize: 20,
@@ -117,15 +115,17 @@ class DoctorHomeScreen extends StatelessWidget {
                                               fontWeight: FontWeight.bold),
                                         ),
                                         Text(
-                                         
-                                              'Email',
+                                          doctorHomeScreenVM.doctorModel?.clinic
+                                                  .phoneNumber ??
+                                              'phone',
                                           style: const TextStyle(
                                             fontSize: 16,
                                             color: Colors.black,
                                           ),
                                         ),
                                         Text(
-                                         
+                                          doctorHomeScreenVM
+                                                  .doctorModel?.balance ??
                                               '0',
                                           style: const TextStyle(
                                             fontSize: 16,
@@ -150,18 +150,21 @@ class DoctorHomeScreen extends StatelessWidget {
                             leading: CircleAvatar(
                               backgroundColor: Colors.white,
                               child: Column(children: [
-                               
+                                Text(bookingList?[index].time.split(' ')[0] ??
+                                    "12:00"),
+                                Text(bookingList?[index].time.split(' ')[1] ??
+                                    "AM"),
                               ]),
                             ),
                             title: Text(
-                               'patient',
+                              bookingList?[index].patientName ?? 'patient',
                               style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
                             subtitle: Text(
-                               'clinic',
+                              bookingList?[index].clinicName ?? 'clinic',
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,
@@ -169,7 +172,7 @@ class DoctorHomeScreen extends StatelessWidget {
                             ),
                             trailing: TextButton(
                               onPressed: () {
-                                
+                                doctorHomeScreenVM.startMeet();
                               },
                               child: const Text(
                                 "JOIN",
@@ -178,7 +181,6 @@ class DoctorHomeScreen extends StatelessWidget {
                             ),
                           );
                         },
-                        
                       ),
                     ),
                   ),

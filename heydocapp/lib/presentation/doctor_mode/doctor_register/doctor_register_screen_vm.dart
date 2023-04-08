@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../domain/models/doctor_model.dart';
 import '../../../domain/models/patient_model.dart';
 import '../../../domain/usecase/post_pic_firebase_usecase.dart';
+import '../doctor_home/doctor_home_screen.dart';
 
 final doctorRegisterScreenVMProvider = ChangeNotifierProvider((ref) =>
     DoctorRegisterScreenVM(
@@ -37,7 +38,10 @@ class DoctorRegisterScreenVM extends ChangeNotifier {
     toggleLoadingState();
     await _postDoctorUsecase.postDoctor(doctorModel);
     toggleLoadingState();
-    //navigate to doctor home screen
+    _navigatorKey.currentState
+        ?.pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+      return const DoctorHomeScreen();
+    }));
   }
 
   void pickDoctorImage(ImageSource source) async {

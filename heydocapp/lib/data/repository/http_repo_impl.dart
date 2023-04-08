@@ -24,7 +24,6 @@ class HttpRepoImpl extends HttpRepo {
       }
     } catch (e) {
       print('get error : $e');
-      return 'try again';
       return;
     }
   }
