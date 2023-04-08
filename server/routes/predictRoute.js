@@ -20,6 +20,7 @@ function deleteLocalImage(id){
 predictRoute.post('/:id',async(req,res)=>{
     let {url_wave,url_spiral} = req.body;
     let {id} = req.params;
+    console.log("predict request sent for id:",id);
     await saveImageLocally(url_wave,id,true);
     await saveImageLocally(url_spiral,id,false);
     const python = spawn('python',['Model/predict.py',id]);
