@@ -39,7 +39,13 @@ class PatientProfilePage extends ConsumerWidget {
                             IconButton(
                                 icon: const Icon(Icons.local_hospital),
                                 onPressed: () {
-                                  patientProfilePageVM.becomeDoctor();
+                                  if (patientProfilePageVM
+                                          .patientModel!.isDoctor ==
+                                      'true') {
+                                    patientProfilePageVM.openDoctorHome();
+                                  } else {
+                                    patientProfilePageVM.becomeDoctor();
+                                  }
                                 }),
                           ],
                           title: const Text("MY PROFILE"),
