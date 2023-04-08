@@ -14,14 +14,15 @@ import '../../domain/usecase/httpput_patient_usecase.dart';
 import '../../domain/usecase/logout_usecase.dart';
 import '../../domain/usecase/post_pic_firebase_usecase.dart';
 
-final patientProfileVMProvider = Provider((ref) => PatientProfileVM(
-    ref.watch(logoutUseCaseProvider),
-    ref.watch(getUserUseCaseProvider),
-    ref.watch(postPicFirebaseUseCaseProvider),
-    ref.watch(putPatientUseCaseProvider),
-    ref.watch(getPatientUseCaseProvider),
-    ref.watch(navigatorKeyProvider),
-    ref.watch(scaffoldMessengerKeyProvider)));
+final patientProfileVMProvider = ChangeNotifierProvider((ref) =>
+    PatientProfileVM(
+        ref.watch(logoutUseCaseProvider),
+        ref.watch(getUserUseCaseProvider),
+        ref.watch(postPicFirebaseUseCaseProvider),
+        ref.watch(putPatientUseCaseProvider),
+        ref.watch(getPatientUseCaseProvider),
+        ref.watch(navigatorKeyProvider),
+        ref.watch(scaffoldMessengerKeyProvider)));
 
 class PatientProfileVM extends ChangeNotifier {
   final LogoutUsecase _logoutUsecase;
@@ -60,6 +61,7 @@ class PatientProfileVM extends ChangeNotifier {
     toggleLoadingState();
     final user = await _getUserUsecase.getUser();
     patientModel = await _getPatientUsecase.getPatient(user!.uid);
+    print(patientModel.toString());
     toggleLoadingState();
   }
 

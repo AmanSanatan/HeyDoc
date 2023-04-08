@@ -1,8 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:heydocapp/presentation/login/login_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:heydocapp/presentation/register/register_screen.dart';
+import 'package:heydocapp/presentation/login/login_screen.dart';
 import 'package:heydocapp/presentation/register/register_screen_vm.dart';
 
 import 'domain/usecase/httppost_patient_usecase.dart';
@@ -32,13 +31,17 @@ final scaffoldMessengerKeyProvider =
 
 final navigatorKeyProvider = Provider((ref) => GlobalKey<NavigatorState>());
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final navigatorKey = ref.watch(navigatorKeyProvider);
+    final scaffoldMessengerKey = ref.watch(scaffoldMessengerKeyProvider);
     return MaterialApp(
+      navigatorKey: navigatorKey,
+      scaffoldMessengerKey: scaffoldMessengerKey,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.

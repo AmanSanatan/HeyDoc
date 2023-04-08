@@ -37,10 +37,10 @@ class HttpRepoImpl extends HttpRepo {
       }
       var url = Uri.parse(baseUrl + uri);
       var payload;
-      if (object is Map) {
-        payload = object;
-      } else {
+      try {
         payload = object.toJson();
+      } catch (e) {
+        payload = object;
       }
       print('maine ye post krne bola : $payload');
       http.Response response = await http.post(url, body: payload, headers: {

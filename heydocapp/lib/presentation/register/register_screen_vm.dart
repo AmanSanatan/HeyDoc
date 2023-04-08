@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/main.dart';
+import 'package:heydocapp/presentation/patient_profile/pat_profile_page.dart';
 
 import '../../domain/models/patient_model.dart';
 import '../../domain/usecase/httppost_patient_usecase.dart';
@@ -11,10 +12,10 @@ import '../../utils/auth_response.dart';
 final registerScreenVMProvider =
     ChangeNotifierProvider<RegisterScreenVM>((ref) {
   return RegisterScreenVM(
-    ref.read(registerUsecaseProvider),
-    ref.read(scaffoldMessengerKeyProvider),
-    ref.read(postPatientUseCaseProvider),
-    ref.read(navigatorKeyProvider),
+    ref.watch(registerUsecaseProvider),
+    ref.watch(scaffoldMessengerKeyProvider),
+    ref.watch(postPatientUseCaseProvider),
+    ref.watch(navigatorKeyProvider),
   );
 });
 
@@ -55,6 +56,10 @@ class RegisterScreenVM extends ChangeNotifier {
     result.when(
       success: (userCredential) async {
         await _postPatient(userCredential);
+        navigatorKey.currentState?.pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) {
+          return const PatientProfilePage();
+        }));
         toggleLoadingState();
         rootScaffoldMessengerKey.currentState?.showSnackBar(
           SnackBar(
@@ -62,7 +67,6 @@ class RegisterScreenVM extends ChangeNotifier {
                 Text("Sucessfully logged in as ${userCredential.user?.email}"),
           ),
         );
-        navigatorKey.currentState?.pop();
       },
       faliure: (message) => rootScaffoldMessengerKey.currentState?.showSnackBar(
         SnackBar(
@@ -74,7 +78,7 @@ class RegisterScreenVM extends ChangeNotifier {
 
   Future _postPatient(UserCredential userCredential) async {
     final patientModel = PatientModel(
-        name: userCredential.user!.displayName!,
+        name: userCredential.user!.displayName ?? userNameTextController.text,
         email: userCredential.user!.email!,
         uid: userCredential.user!.uid,
         isDoctor: 'false');
