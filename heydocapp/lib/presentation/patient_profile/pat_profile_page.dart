@@ -38,7 +38,9 @@ class PatientProfilePage extends ConsumerWidget {
                           actions: [
                             IconButton(
                                 icon: const Icon(Icons.local_hospital),
-                                onPressed: () {}),
+                                onPressed: () {
+                                  patientProfilePageVM.becomeDoctor();
+                                }),
                           ],
                           title: const Text("MY PROFILE"),
                           centerTitle: true,

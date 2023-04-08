@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/main.dart';
+import 'package:heydocapp/presentation/login/login_screen.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../domain/models/patient_model.dart';
@@ -13,6 +14,7 @@ import '../../domain/usecase/httpget_patient_usecase.dart';
 import '../../domain/usecase/httpput_patient_usecase.dart';
 import '../../domain/usecase/logout_usecase.dart';
 import '../../domain/usecase/post_pic_firebase_usecase.dart';
+import '../doctor_mode/doctor_register/doctor_register_screen.dart';
 
 final patientProfileVMProvider = ChangeNotifierProvider((ref) =>
     PatientProfileVM(
@@ -50,6 +52,10 @@ class PatientProfileVM extends ChangeNotifier {
 
   void logout() {
     _logoutUsecase.logout();
+    navigatorKey.currentState
+        ?.pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
+      return const LoginScreen();
+    }));
   }
 
   void toggleLoadingState() {
@@ -91,5 +97,12 @@ class PatientProfileVM extends ChangeNotifier {
     }
     toggleLoadingState();
     getPatient();
+  }
+
+  void becomeDoctor() {
+    navigatorKey.currentState
+        ?.push(MaterialPageRoute(builder: (BuildContext context) {
+      return DoctorRegisterScreen(patientModel!);
+    }));
   }
 }
