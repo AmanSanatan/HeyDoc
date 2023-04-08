@@ -14,12 +14,7 @@ patientRoute.get('/:id',async(req,res)=>{
     console.log(req.params.id);
     let patient = await Patient.findOne({uid:req.params.id}).populate('bookings');
     console.log("get request sent to get a patient with a specific uid:",patient );
-    if(patient === null){        
-        let dummy = await Patient.findOne({uid:"error"});
-        res.send(dummy);
-    } else {
-        res.send(patient);
-    }
+    res.send(patient);
 })
 
 // add a new patient
