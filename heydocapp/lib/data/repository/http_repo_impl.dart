@@ -11,21 +11,38 @@ class HttpRepoImpl extends HttpRepo {
 
   @override
   Future get(String uri) async {
-    // TODO: implement delete
-    throw UnimplementedError();
+    try {
+      var url = Uri.parse(baseUrl + uri);
+      http.Response response = await http.get(url);
+      print('get call for $uri');
+      print('get response body : ${response.body}');
+      if (response.statusCode == 200) {
+        print('get success for $uri');
+        return response.body;
+      } else {
+        print('get galat code : ${response.statusCode}');
+      }
+    } catch (e) {
+      print('get error : $e');
+      return 'try again';
+      return;
+    }
   }
 
   @override
   Future post(String uri, object) async {
     try {
+      if (object == null) {
+        return;
+      }
       var url = Uri.parse(baseUrl + uri);
       var payload;
-      try {
-        payload = object.toJson();
-      } catch (e) {
+      if (object is Map) {
         payload = object;
+      } else {
+        payload = object.toJson();
       }
-      print('maine ye patient post krne bola : $payload');
+      print('maine ye post krne bola : $payload');
       http.Response response = await http.post(url, body: payload, headers: {
         'Content-type': 'application/json',
       });
@@ -45,7 +62,23 @@ class HttpRepoImpl extends HttpRepo {
 
   @override
   Future put(String uri, object) async {
-    // TODO: implement delete
-    throw UnimplementedError();
+    try {
+      var url = Uri.parse(baseUrl + uri);
+      http.Response response =
+          await http.put(url, body: object.toJson(), headers: {
+        'Content-type': 'application/json',
+      });
+      print('put call for $uri');
+      print('put response body : ${response.body}');
+      if (response.statusCode == 200) {
+        print('put success for $uri');
+        return;
+      } else {
+        print('put galat code : ${response.statusCode}');
+      }
+    } catch (e) {
+      print('put error : $e');
+      return;
+    }
   }
 }
