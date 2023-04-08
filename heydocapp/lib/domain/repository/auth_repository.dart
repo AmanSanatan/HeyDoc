@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/repository/auth_repository_impl.dart';
@@ -12,4 +13,5 @@ abstract class AuthRepository {
   Future emailRegister(String email, String password);
   Future googleRegister();
   Future logout();
+  Future<User?> getUser();
 }
