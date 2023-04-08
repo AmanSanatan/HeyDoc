@@ -105,7 +105,7 @@ class LoginScreen extends ConsumerWidget {
                                 ),
                                 Padding(
                                     padding:
-                                        EdgeInsets.only(left: width * 0.08)),
+                                        EdgeInsets.only(left: width * 0.06)),
                                 GestureDetector(
                                     onTap: loginScreenVM.googleLogin,
                                     child: const ButtonBox(
