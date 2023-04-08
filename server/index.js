@@ -1,9 +1,9 @@
 import express from 'express';
-import methodOverride from 'method-override';
 import mongoose from 'mongoose';
-import { patientRoute } from './routes/patientRoute.js' ;
-import { doctorRoute } from './routes/doctorRoute.js';
 import { bookingRoute } from './routes/bookingRoute.js';
+import { doctorRoute } from './routes/doctorRoute.js';
+import { patientRoute } from './routes/patientRoute.js';
+import { clinicRoute } from './routes/clinicRoute.js';
 let app = express();
 app.listen(3000,(res)=>{
     console.log("Listening on port");
@@ -18,8 +18,10 @@ mongoose.connect(uri,  {
     })
     .catch((err)=>{
         console.log(err);
-    })
+})
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use('/patient',patientRoute);
 app.use('/doctor',doctorRoute);
+app.use('/booking',bookingRoute);
+app.use('/clinic',clinicRoute);
