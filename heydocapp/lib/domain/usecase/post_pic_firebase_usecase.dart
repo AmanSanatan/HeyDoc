@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum PictureType { patientImage, spiral, wave }
+enum PictureType { patientImage, spiral, wave, doctorImage, clinicImage }
 
 final postPicFirebaseUseCaseProvider =
     Provider((ref) => PostPicFirebaseUsecase());
