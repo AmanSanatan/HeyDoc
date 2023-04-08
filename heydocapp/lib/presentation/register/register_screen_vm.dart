@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/main.dart';
-import 'package:heydocapp/presentation/patient_profile/pat_profile_page.dart';
+import 'package:heydocapp/presentation/navigation_screen/bottom_nav_screen.dart';
 
 import '../../domain/models/patient_model.dart';
 import '../../domain/usecase/httppost_patient_usecase.dart';
@@ -58,7 +58,7 @@ class RegisterScreenVM extends ChangeNotifier {
         await _postPatient(userCredential);
         navigatorKey.currentState?.pushReplacement(
             MaterialPageRoute(builder: (BuildContext context) {
-          return const PatientProfilePage();
+          return const BottomNavScreen();
         }));
         toggleLoadingState();
         rootScaffoldMessengerKey.currentState?.showSnackBar(
