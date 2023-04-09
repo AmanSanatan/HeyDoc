@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/main.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import '../../domain/models/booking_model.dart';
@@ -126,6 +127,14 @@ class BookSessionVM extends ChangeNotifier {
       scaffoldMessengerKey.currentState?.showSnackBar(const SnackBar(
           content:
               Text('Please select time at least 30 minutes from present')));
+      return;
+    }
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+      Permission.microphone,
+    ].request();
+    if (statuses[Permission.camera] != PermissionStatus.granted &&
+        statuses[Permission.microphone] != PermissionStatus.granted) {
       return;
     }
 
