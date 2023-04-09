@@ -172,7 +172,7 @@ class DoctorHomeScreen extends ConsumerWidget {
                             ),
                             trailing: TextButton(
                               onPressed: () {
-                                doctorHomeScreenVM.startMeet();
+                                doctorHomeScreenVM.startMeet(index);
                               },
                               child: const Text(
                                 "JOIN",

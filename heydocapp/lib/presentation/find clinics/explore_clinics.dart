@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:heydocapp/presentation/find%20clinics/explore_clinics_vm.dart';
+import 'package:heydocapp/presentation/meet%20booking/book_session.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import '../../domain/models/clinic_model.dart';
@@ -31,7 +32,10 @@ class ExploreClinics extends ConsumerWidget {
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () {
-                  //open booking page
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return BookSession(list[index]);
+                  }));
                 },
                 child: Padding(
                     padding: const EdgeInsets.all(16),

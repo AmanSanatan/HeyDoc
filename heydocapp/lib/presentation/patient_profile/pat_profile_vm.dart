@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/main.dart';
 import 'package:heydocapp/presentation/login/login_screen.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 import '../../domain/models/patient_model.dart';
 import '../../domain/usecase/get_user_usecase.dart';
@@ -15,6 +16,7 @@ import '../../domain/usecase/logout_usecase.dart';
 import '../../domain/usecase/post_pic_firebase_usecase.dart';
 import '../doctor_mode/doctor_home/doctor_home_screen.dart';
 import '../doctor_mode/doctor_register/doctor_register_screen.dart';
+import '../meets/webview.dart';
 
 final patientProfileVMProvider = ChangeNotifierProvider((ref) =>
     PatientProfileVM(
@@ -110,5 +112,40 @@ class PatientProfileVM extends ChangeNotifier {
         ?.push(MaterialPageRoute(builder: (BuildContext context) {
       return const DoctorHomeScreen();
     }));
+  }
+
+  void startMeet(int index) {
+    bool tooEarly = checkIfJoinMeetingTooEarly(
+        patientModel!.bookings![index].date,
+        patientModel!.bookings![index].time);
+    if (tooEarly) {
+      scaffoldMessengerKey.currentState?.showSnackBar(const SnackBar(
+          content:
+              Text('Please join atleast 5 minutes before scheduled time')));
+    } else {
+      navigatorKey.currentState
+          ?.push(MaterialPageRoute(builder: (BuildContext context) {
+        return MeetingWebView(
+            meetingUrl: patientModel!.bookings![index].meetLink);
+      }));
+    }
+  }
+
+  bool checkIfJoinMeetingTooEarly(String date, String time) {
+    DateTime meetingDate = DateFormat('yMMMd').parse(date);
+    DateTime meetingTime = DateFormat('jm').parse(time);
+
+    DateTime meetingDateTime = DateTime(meetingDate.year, meetingDate.month,
+        meetingDate.day, meetingTime.hour, meetingTime.minute);
+
+    DateTime currentTime = DateTime.now();
+    final diffMinutes = currentTime.difference(meetingDateTime).inMinutes;
+
+    if (diffMinutes > -5) {
+      return false;
+    } else {
+      print('jyaada tez ho rhe ho');
+      return true;
+    }
   }
 }

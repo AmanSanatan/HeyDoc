@@ -4,9 +4,11 @@ import 'package:heydocapp/domain/models/doctor_model.dart';
 import 'package:heydocapp/domain/usecase/get_user_usecase.dart';
 import 'package:heydocapp/domain/usecase/post_pic_firebase_usecase.dart';
 import 'package:heydocapp/main.dart';
+import 'package:intl/intl.dart';
 
 import '../../../domain/usecase/httpget_doctor_usecase.dart';
 import '../../../domain/usecase/httpput_doctor_usecase.dart';
+import '../../meets/webview.dart';
 
 final doctorHomeScreenVMProvider = ChangeNotifierProvider((ref) =>
     DoctorHomeScreenVM(
@@ -50,5 +52,37 @@ class DoctorHomeScreenVM extends ChangeNotifier {
     toggleLoadingState();
   }
 
-  void startMeet() {}
+  void startMeet(int index) {
+    bool tooEarly = checkIfJoinMeetingTooEarly(
+        doctorModel!.bookings![index].date, doctorModel!.bookings![index].time);
+    if (tooEarly) {
+      scaffoldMessengerKey.currentState?.showSnackBar(const SnackBar(
+          content:
+              Text('Please join atleast 5 minutes before scheduled time')));
+    } else {
+      navigatorKey.currentState
+          ?.push(MaterialPageRoute(builder: (BuildContext context) {
+        return MeetingWebView(
+            meetingUrl: doctorModel!.bookings![index].meetLink);
+      }));
+    }
+  }
+
+  bool checkIfJoinMeetingTooEarly(String date, String time) {
+    DateTime meetingDate = DateFormat('yMMMd').parse(date);
+    DateTime meetingTime = DateFormat('jm').parse(time);
+
+    DateTime meetingDateTime = DateTime(meetingDate.year, meetingDate.month,
+        meetingDate.day, meetingTime.hour, meetingTime.minute);
+
+    DateTime currentTime = DateTime.now();
+    final diffMinutes = currentTime.difference(meetingDateTime).inMinutes;
+
+    if (diffMinutes > -5) {
+      return false;
+    } else {
+      print('jyaada tez ho rhe ho');
+      return true;
+    }
+  }
 }

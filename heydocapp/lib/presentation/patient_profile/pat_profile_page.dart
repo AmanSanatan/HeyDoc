@@ -12,6 +12,7 @@ class PatientProfilePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final patientProfilePageVM = ref.watch(patientProfileVMProvider);
+    final bookingList = patientProfilePageVM.patientModel?.bookings;
     return Scaffold(
       body: Stack(children: [
         patientProfilePageVM.isLoading
@@ -170,27 +171,31 @@ class PatientProfilePage extends ConsumerWidget {
                           return ListTile(
                             leading: CircleAvatar(
                               backgroundColor: Colors.white,
-                              child: Column(children: const [
-                                Text("12:00"),
-                                Text("AM"),
+                              child: Column(children: [
+                                Text(bookingList?[index].time.split(' ')[0] ??
+                                    "12:00"),
+                                Text(bookingList?[index].time.split(' ')[1] ??
+                                    "AM"),
                               ]),
                             ),
-                            title: const Text(
-                              'doctor',
-                              style: TextStyle(
+                            title: Text(
+                              bookingList?[index].doctorName ?? 'doctor',
+                              style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
-                            subtitle: const Text(
-                              'clinic',
-                              style: TextStyle(
+                            subtitle: Text(
+                              bookingList?[index].clinicName ?? 'clinic',
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,
                               ),
                             ),
                             trailing: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                patientProfilePageVM.startMeet(index);
+                              },
                               child: const Text(
                                 "JOIN",
                                 style: TextStyle(color: Colors.lightBlue),
@@ -198,7 +203,7 @@ class PatientProfilePage extends ConsumerWidget {
                             ),
                           );
                         },
-                        itemCount: 0,
+                        itemCount: bookingList?.length ?? 0,
                       ),
                     ),
                   ),
