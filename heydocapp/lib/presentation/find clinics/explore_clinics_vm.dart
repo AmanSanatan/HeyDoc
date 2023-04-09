@@ -12,7 +12,9 @@ class ExploreClinicVM extends ChangeNotifier {
   List<ClinicModel> clinics = [];
   bool isLoading = false;
 
-  ExploreClinicVM(this._getClinicsUsecase);
+  ExploreClinicVM(this._getClinicsUsecase) {
+    getClinics();
+  }
 
   void toggleLoadingState() {
     isLoading = !isLoading;

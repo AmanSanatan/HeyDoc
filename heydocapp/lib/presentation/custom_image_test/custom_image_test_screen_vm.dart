@@ -15,15 +15,17 @@ final customImageTestScreenVMProvider = ChangeNotifierProvider.autoDispose(
         ref.watch(navigatorKeyProvider),
         ref.watch(postPicFirebaseUseCaseProvider),
         ref.watch(getUserUseCaseProvider),
-        ref.watch(runModelUseCaseProvider)));
+        ref.watch(runModelUseCaseProvider),
+        ref.watch(scaffoldMessengerKeyProvider)));
 
 class CustomImageTestScreenVM extends ChangeNotifier {
   final GlobalKey<NavigatorState> navigatorKey;
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey;
   final PostPicFirebaseUsecase postPicFirebaseUsecase;
   final GetUserUsecase getUserUsecase;
   final RunModelUseCase _runModelUsecase;
   CustomImageTestScreenVM(this.navigatorKey, this.postPicFirebaseUsecase,
-      this.getUserUsecase, this._runModelUsecase);
+      this.getUserUsecase, this._runModelUsecase, this.scaffoldMessengerKey);
 
   bool isLoading = false;
   String? spiralImageUrl;
@@ -72,6 +74,9 @@ class CustomImageTestScreenVM extends ChangeNotifier {
     toggleLoadingState();
     final user = await getUserUsecase.getUser();
     if (spiralImageUrl == null || waveImageUrl == null || user == null) {
+      toggleLoadingState();
+      scaffoldMessengerKey.currentState
+          ?.showSnackBar(const SnackBar(content: Text('please upload images')));
       return;
     }
     final result = await _runModelUsecase.runModel(
