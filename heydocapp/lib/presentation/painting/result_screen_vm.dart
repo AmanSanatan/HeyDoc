@@ -61,12 +61,14 @@ class ResultScreenVM extends ChangeNotifier {
         await _runModelUsecase.runModel(spiralFileLink, waveFileLink, uid);
     modelOutputText = '$result';
 
-    // if (result == 1) {
-    //   modelOutputText = 'YOU ARE ADVISED TO SEE A DOCTOR IMMEDEATLY';
-    // } else if (result == 0) {
-    //   modelOutputText =
-    //       'You seem fit according to our tests. Still, if you are observing other parkinson symptoms , then we recommend you to see a doctor';
-    // }
+    if (result == 2) {
+      modelOutputText = 'YOU ARE ADVISED TO SEE A DOCTOR IMMEDEATLY';
+    } else if (result == 1) {
+      modelOutputText =
+          'You seem to be fit. Still, if you are observing other parkinson symptoms , then we recommend you to see a doctor';
+    } else {
+      modelOutputText = 'You are healthy according to our tests!';
+    }
     print('aapko itna parkinson hain : $result');
     toggleLoadingState();
   }
