@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/domain/usecase/get_user_usecase.dart';
 import 'package:heydocapp/domain/usecase/post_pic_firebase_usecase.dart';
 import 'package:heydocapp/main.dart';
+import 'package:heydocapp/presentation/custom_image_test/cusotm_result_screen.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../domain/usecase/run_model_usecase.dart';
@@ -76,6 +77,10 @@ class CustomImageTestScreenVM extends ChangeNotifier {
     final result = await _runModelUsecase.runModel(
         spiralImageUrl!, waveImageUrl!, user.uid);
     outputText = '$result';
+    navigatorKey.currentState
+        ?.push(MaterialPageRoute(builder: (BuildContext context) {
+      return const CustomResultScreen();
+    }));
     // if (result == 1) {
     //   outputText = 'YOU ARE ADVISED TO SEE A DOCTOR IMMEDEATLY';
     // } else if (result == 0) {

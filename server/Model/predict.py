@@ -59,7 +59,7 @@ def wa_predict(img):
     return(pr)
 
 def predict(spiralimg, waveimg):
-    avg = int((sp_predict(spiralimg) + 2*wa_predict(waveimg)))
+    avg = int((sp_predict(spiralimg) + wa_predict(waveimg)))
     return avg
 
 def caller():
