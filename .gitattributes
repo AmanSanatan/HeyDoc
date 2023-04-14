@@ -1,1 +1,1 @@
-*.Jupyter Notebook linguist-detectable=false
+notebooks/** linguist-vendored
