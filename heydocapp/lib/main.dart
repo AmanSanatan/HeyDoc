@@ -2,10 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/presentation/login/login_screen.dart';
-import 'package:heydocapp/presentation/register/register_screen_vm.dart';
 
-import 'domain/usecase/httppost_patient_usecase.dart';
-import 'domain/usecase/register_usecase.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -15,16 +12,6 @@ void main() async {
   );
   runApp(const ProviderScope(child: MyApp()));
 }
-
-final registerScreenVMProvider =
-    ChangeNotifierProvider<RegisterScreenVM>((ref) {
-  return RegisterScreenVM(
-    ref.read(registerUsecaseProvider),
-    ref.read(scaffoldMessengerKeyProvider),
-    ref.read(postPatientUseCaseProvider),
-    ref.read(navigatorKeyProvider),
-  );
-});
 
 final scaffoldMessengerKeyProvider =
     Provider((ref) => GlobalKey<ScaffoldMessengerState>());
