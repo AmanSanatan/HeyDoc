@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/booking_model.dart';
-import '../repository/http_repo.dart';
+import '../../../models/booking_model.dart';
+import '../../../repository/http_repo.dart';
 
 final postNewBookingUseCaseProvider =
     Provider((ref) => PostNewBookingUseCase(ref.watch(httpRepoProvider)));

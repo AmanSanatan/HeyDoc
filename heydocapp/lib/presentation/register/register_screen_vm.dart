@@ -5,7 +5,7 @@ import 'package:heydocapp/main.dart';
 import 'package:heydocapp/presentation/navigation_screen/bottom_nav_screen.dart';
 
 import '../../domain/models/patient_model.dart';
-import '../../domain/usecase/httppost_patient_usecase.dart';
+import '../../domain/usecase/http_usecase/httppost/httppost_patient_usecase.dart';
 import '../../domain/usecase/register_usecase.dart';
 import '../../utils/auth_response.dart';
 

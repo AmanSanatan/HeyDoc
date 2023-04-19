@@ -11,7 +11,7 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../domain/models/booking_model.dart';
 import '../../domain/models/clinic_model.dart';
 import '../../domain/usecase/get_user_usecase.dart';
-import '../../domain/usecase/httppost_new_booking_usecase.dart';
+import '../../domain/usecase/http_usecase/httppost/httppost_new_booking_usecase.dart';
 
 final bookSessionVMProvider = ChangeNotifierProvider((ref) => BookSessionVM(
     ref.watch(navigatorKeyProvider),

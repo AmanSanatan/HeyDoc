@@ -6,8 +6,8 @@ import 'package:heydocapp/domain/usecase/post_pic_firebase_usecase.dart';
 import 'package:heydocapp/main.dart';
 import 'package:intl/intl.dart';
 
-import '../../../domain/usecase/httpget_doctor_usecase.dart';
-import '../../../domain/usecase/httpput_doctor_usecase.dart';
+import '../../../domain/usecase/http_usecase/httpget/httpget_doctor_usecase.dart';
+import '../../../domain/usecase/http_usecase/httpput/httpput_doctor_usecase.dart';
 import '../../meets/webview.dart';
 
 final doctorHomeScreenVMProvider = ChangeNotifierProvider((ref) =>

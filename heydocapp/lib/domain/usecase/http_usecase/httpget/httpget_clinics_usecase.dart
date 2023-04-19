@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/clinic_model.dart';
-import '../repository/http_repo.dart';
+import '../../../models/clinic_model.dart';
+import '../../../repository/http_repo.dart';
 
 final getClinicsUseCaseProvider =
     Provider((ref) => GetClinicsUsecase(ref.watch(httpRepoProvider)));

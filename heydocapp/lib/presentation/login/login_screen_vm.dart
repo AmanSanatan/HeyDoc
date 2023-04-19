@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:heydocapp/domain/usecase/httppost_patient_usecase.dart';
+import 'package:heydocapp/domain/usecase/http_usecase/httppost/httppost_patient_usecase.dart';
 import 'package:heydocapp/main.dart';
 import 'package:heydocapp/presentation/navigation_screen/bottom_nav_screen.dart';
 

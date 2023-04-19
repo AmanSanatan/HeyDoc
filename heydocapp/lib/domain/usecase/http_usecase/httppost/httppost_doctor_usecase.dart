@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/doctor_model.dart';
-import '../repository/http_repo.dart';
+import '../../../models/doctor_model.dart';
+import '../../../repository/http_repo.dart';
 
 final postDoctorUseCaseProvider =
     Provider((ref) => PostDoctorUsecase(ref.read(httpRepoProvider)));

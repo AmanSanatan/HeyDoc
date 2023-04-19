@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/models/clinic_model.dart';
-import '../../domain/usecase/httpget_clinics_usecase.dart';
+import '../../domain/usecase/http_usecase/httpget/httpget_clinics_usecase.dart';
 
 final exploreClinicsVMProvider = ChangeNotifierProvider(
     (ref) => ExploreClinicVM(ref.watch(getClinicsUseCaseProvider)));

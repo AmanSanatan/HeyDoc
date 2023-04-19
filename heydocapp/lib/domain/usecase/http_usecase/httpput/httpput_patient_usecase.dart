@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../models/patient_model.dart';
-import '../repository/http_repo.dart';
+import '../../../models/patient_model.dart';
+import '../../../repository/http_repo.dart';
 
 final putPatientUseCaseProvider =
     Provider((ref) => PutPatientUsecase(ref.watch(httpRepoProvider)));

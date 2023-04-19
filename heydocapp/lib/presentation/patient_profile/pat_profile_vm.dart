@@ -10,8 +10,8 @@ import 'package:intl/intl.dart';
 
 import '../../domain/models/patient_model.dart';
 import '../../domain/usecase/get_user_usecase.dart';
-import '../../domain/usecase/httpget_patient_usecase.dart';
-import '../../domain/usecase/httpput_patient_usecase.dart';
+import '../../domain/usecase/http_usecase/httpget/httpget_patient_usecase.dart';
+import '../../domain/usecase/http_usecase/httpput/httpput_patient_usecase.dart';
 import '../../domain/usecase/logout_usecase.dart';
 import '../../domain/usecase/post_pic_firebase_usecase.dart';
 import '../doctor_mode/doctor_home/doctor_home_screen.dart';
