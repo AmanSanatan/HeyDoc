@@ -135,6 +135,8 @@ class BookSessionVM extends ChangeNotifier {
     ].request();
     if (statuses[Permission.camera] != PermissionStatus.granted &&
         statuses[Permission.microphone] != PermissionStatus.granted) {
+      scaffoldMessengerKey.currentState?.showSnackBar(const SnackBar(
+          content: Text('Please grant camera and microphone permission')));
       return;
     }
 

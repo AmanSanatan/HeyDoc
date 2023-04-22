@@ -14,4 +14,5 @@ abstract class AuthRepository {
   Future googleRegister();
   Future logout();
   Future<User?> getUser();
+  Stream<User?> handleAuthState();
 }

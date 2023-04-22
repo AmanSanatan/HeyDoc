@@ -11,7 +11,6 @@ class PutDoctorUsecase {
 
   Future putDoctor(DoctorModel doctorModel) async {
     String uri = '/doctor${doctorModel.uid}/update';
-    final response = await _httpRepo.put(uri, doctorModel);
-    return DoctorModel.fromJson(response);
+    return _httpRepo.put(uri, doctorModel);
   }
 }
