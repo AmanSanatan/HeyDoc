@@ -2,38 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/domain/models/doctor_model.dart';
 import 'package:heydocapp/domain/usecase/get_user_usecase.dart';
-import 'package:heydocapp/domain/usecase/post_pic_firebase_usecase.dart';
 import 'package:heydocapp/main.dart';
 import 'package:intl/intl.dart';
 
 import '../../../domain/usecase/http_usecase/httpget/httpget_doctor_usecase.dart';
-import '../../../domain/usecase/http_usecase/httpput/httpput_doctor_usecase.dart';
 import '../../meets/webview.dart';
 
 final doctorHomeScreenVMProvider = ChangeNotifierProvider((ref) =>
     DoctorHomeScreenVM(
         ref.watch(getUserUseCaseProvider),
-        ref.watch(postPicFirebaseUseCaseProvider),
         ref.watch(getDoctorUsecaseProvider),
-        ref.watch(putDoctorUseCaseprovider),
         ref.watch(navigatorKeyProvider),
         ref.watch(scaffoldMessengerKeyProvider)));
 
 class DoctorHomeScreenVM extends ChangeNotifier {
   final GetUserUsecase _getUserUsecase;
-  final PostPicFirebaseUsecase _postPicFirebaseUsecase;
   final GetDoctorUsecase _getDoctorUsecase;
-  final PutDoctorUsecase _putDoctorUsecase;
   final GlobalKey<NavigatorState> navigatorKey;
   final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey;
 
-  DoctorHomeScreenVM(
-      this._getUserUsecase,
-      this._postPicFirebaseUsecase,
-      this._getDoctorUsecase,
-      this._putDoctorUsecase,
-      this.navigatorKey,
-      this.scaffoldMessengerKey) {
+  DoctorHomeScreenVM(this._getUserUsecase, this._getDoctorUsecase,
+      this.navigatorKey, this.scaffoldMessengerKey) {
     getDoctor();
   }
 

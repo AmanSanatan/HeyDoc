@@ -17,6 +17,7 @@ class _MeetingWebViewState extends State<MeetingWebView> {
     // if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
 
+  // ignore: unused_field
   InAppWebViewController? _webViewController;
 
   @override

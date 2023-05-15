@@ -92,7 +92,9 @@ class CustomImageTestScreenVM extends ChangeNotifier {
     }
     navigatorKey.currentState
         ?.push(MaterialPageRoute(builder: (BuildContext context) {
-      return const CustomResultScreen();
+      return CustomResultScreen(
+        outputText: outputText ?? "Some error occured",
+      );
     }));
     print('aapko itna parkinson hain : $result');
     toggleLoadingState();

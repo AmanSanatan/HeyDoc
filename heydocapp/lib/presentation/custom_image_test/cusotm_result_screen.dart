@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomResultScreen extends StatelessWidget {
-  final outputText;
-  const CustomResultScreen({super.key, this.outputText});
+  final String outputText;
+  const CustomResultScreen({super.key, required this.outputText});
 
   @override
   Widget build(BuildContext context) {
