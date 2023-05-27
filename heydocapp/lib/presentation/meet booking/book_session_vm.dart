@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/main.dart';
+import 'package:heydocapp/notification_service.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -162,6 +163,16 @@ class BookSessionVM extends ChangeNotifier {
   }
 
   void handlePaymentSuccess(PaymentSuccessResponse response) {
+    final notificationService = NotificationService();
+    notificationService.initializeNotifications();
+    notificationService.showNotification(
+      1,
+      'Check out Your appointment',
+      "you have an appointment at $bookingTime",
+      timeOfDayToDateTime(
+        stringToTimeOfDay(bookingTime),
+      ),
+    );
     createMeetLink();
   }
 
