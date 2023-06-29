@@ -9,8 +9,8 @@ class NotificationService {
   Future<void> initializeNotifications() async {
     const AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings("@mipmap/ic_launcher");
-    const IOSInitializationSettings iosInitializationSettings =
-        IOSInitializationSettings(
+    const DarwinInitializationSettings iosInitializationSettings =
+        DarwinInitializationSettings(
       requestAlertPermission: false,
       requestBadgePermission: false,
       requestSoundPermission: false,
@@ -38,7 +38,7 @@ class NotificationService {
             importance: Importance.max,
             priority: Priority.max,
             icon: '@mipmap/ic_launcher'),
-        iOS: const IOSNotificationDetails(
+        iOS: const DarwinNotificationDetails(
             sound: 'default.wav',
             presentAlert: true,
             presentBadge: true,
@@ -46,7 +46,7 @@ class NotificationService {
       ),
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
-      androidAllowWhileIdle: true,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       // matchDateTimeComponents: DateTimeComponents.time,
     );
   }
