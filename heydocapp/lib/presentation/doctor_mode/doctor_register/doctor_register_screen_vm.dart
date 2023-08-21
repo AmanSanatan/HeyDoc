@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:heydocapp/domain/usecase/httppost_doctor_usecase.dart';
+import 'package:heydocapp/domain/usecase/http_usecase/httppost/httppost_doctor_usecase.dart';
 import 'package:heydocapp/main.dart';
 import 'package:image_picker/image_picker.dart';
 

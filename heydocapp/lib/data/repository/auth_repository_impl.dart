@@ -86,7 +86,12 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<User?> getUser() async {
-    var uid = FirebaseAuth.instance.currentUser;
-    return uid;
+    var user = FirebaseAuth.instance.currentUser;
+    return user;
+  }
+
+  @override
+  Stream<User?> handleAuthState() {
+    return FirebaseAuth.instance.authStateChanges();
   }
 }

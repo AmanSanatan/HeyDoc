@@ -19,8 +19,8 @@ dirname = os.path.dirname(__file__)
 # sp_mod2.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
 # wa_mod2.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
-sp_mod3 = load_model(os.path.join(dirname,"DenseNet201_sp.h5"),compile=False)
-wa_mod3 = load_model(os.path.join(dirname,"DenseNet201_wa.h5"),compile=False)
+sp_mod3 = load_model(os.path.join(dirname,"DenseNet201_sp_2.h5"),compile=False)
+wa_mod3 = load_model(os.path.join(dirname,"DenseNet201_wa_2.h5"),compile=False)
 sp_mod3.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
 wa_mod3.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
@@ -59,7 +59,7 @@ def wa_predict(img):
     return(pr)
 
 def predict(spiralimg, waveimg):
-    avg = int((sp_predict(spiralimg) + 2*wa_predict(waveimg)))
+    avg = int((sp_predict(spiralimg) + wa_predict(waveimg)))
     return avg
 
 def caller(): 

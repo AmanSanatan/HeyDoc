@@ -42,8 +42,8 @@ class DoctorHomeScreen extends ConsumerWidget {
                                 return [
                                   PopupMenuItem(
                                     onTap: () {},
-                                    child: Row(
-                                      children: const [
+                                    child: const Row(
+                                      children: [
                                         Icon(Icons.edit_attributes),
                                         Text('Edit clinic'),
                                       ],
@@ -172,7 +172,7 @@ class DoctorHomeScreen extends ConsumerWidget {
                             ),
                             trailing: TextButton(
                               onPressed: () {
-                                doctorHomeScreenVM.startMeet();
+                                doctorHomeScreenVM.startMeet(index);
                               },
                               child: const Text(
                                 "JOIN",

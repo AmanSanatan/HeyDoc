@@ -137,15 +137,6 @@ class CustomImageTestScreen extends ConsumerWidget {
                   Padding(
                     padding: EdgeInsets.only(top: height * 0.5 * 0.05),
                   ),
-                  (customImageTestScreenVM.outputText == null)
-                      ? const SizedBox.shrink()
-                      : Text(
-                          customImageTestScreenVM.outputText!,
-                          style: const TextStyle(fontSize: 32),
-                        ),
-                  Padding(
-                    padding: EdgeInsets.only(top: height * 0.5 * 0.05),
-                  ),
                   InkWell(
                     onTap: () {
                       customImageTestScreenVM.runModel();

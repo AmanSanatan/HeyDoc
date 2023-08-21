@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:heydocapp/main.dart';
 import 'package:heydocapp/presentation/login/login_screen.dart';
+import 'package:heydocapp/presentation/register/register_screen_vm.dart';
 
 import '../button_box.dart';
 import '../text_field.dart';

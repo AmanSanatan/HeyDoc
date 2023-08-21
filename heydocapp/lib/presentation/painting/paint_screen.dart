@@ -37,7 +37,7 @@ class PaintScreen extends ConsumerWidget {
         ],
       ),
       backgroundColor: Colors.deepPurple[100],
-      body: Stack(children: [
+      body: Column(children: [
         Screenshot(
           controller: controller,
           child: Container(
@@ -79,55 +79,75 @@ class PaintScreen extends ConsumerWidget {
             ),
           ),
         ),
-        SizedBox.expand(
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                IconButton(
-                    onPressed: () async {
-                      if (paintScreenVM.pageNumber == 0) {
-                        final byte = await controller.capture();
-                        paintScreenVM.savedImages.spiralImage = byte;
-                        print(
-                            'spiral img ${paintScreenVM.savedImages.spiralImage}');
-                      } else if (paintScreenVM.pageNumber == 1) {
-                        final byte = await controller.capture();
-                        paintScreenVM.savedImages.waveImage = byte;
-                        print(
-                            'wave img ${paintScreenVM.savedImages.waveImage}');
-                      }
+        if (paintScreenVM.pageNumber == 0)
+          Flexible(
+            child: Container(
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(16)),
+              child: Image.network(
+                'https://firebasestorage.googleapis.com/v0/b/heydoc-2f2ba.appspot.com/o/spiral_ideal.jpeg?alt=media&token=696de54b-d248-4fba-bcb1-7f77e481e99b',
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+          )
+        else
+          Flexible(
+            child: Container(
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(16)),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Image.network(
+                'https://firebasestorage.googleapis.com/v0/b/heydoc-2f2ba.appspot.com/o/wave_ideal.jpeg?alt=media&token=6b8b92f5-664c-446e-a9ff-a8237c1b82d8',
+                fit: BoxFit.fitWidth,
+              ),
+            ),
+          ),
+        Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              IconButton(
+                  onPressed: () async {
+                    if (paintScreenVM.pageNumber == 0) {
+                      final byte = await controller.capture();
+                      paintScreenVM.savedImages.spiralImage = byte;
+                      print(
+                          'spiral img ${paintScreenVM.savedImages.spiralImage}');
+                    } else if (paintScreenVM.pageNumber == 1) {
+                      final byte = await controller.capture();
+                      paintScreenVM.savedImages.waveImage = byte;
+                      print('wave img ${paintScreenVM.savedImages.waveImage}');
+                    }
+                    paintScreenVM.pageEventSink
+                        .add(const SealedPageEvents.previous());
+                  },
+                  icon: const Icon(Icons.navigate_before_outlined)),
+              IconButton(
+                  onPressed: () {
+                    paintScreenVM.paintEventSink
+                        .add(const SealedPaintEvents.clear());
+                  },
+                  icon: const Icon(Icons.delete)),
+              IconButton(
+                  onPressed: () async {
+                    if (paintScreenVM.pageNumber == 0) {
+                      final byte = await controller.capture();
+                      paintScreenVM.savedImages.spiralImage = byte;
                       paintScreenVM.pageEventSink
-                          .add(const SealedPageEvents.previous());
-                    },
-                    icon: const Icon(Icons.navigate_before_outlined)),
-                IconButton(
-                    onPressed: () {
-                      paintScreenVM.paintEventSink
-                          .add(const SealedPaintEvents.clear());
-                    },
-                    icon: const Icon(Icons.delete)),
-                IconButton(
-                    onPressed: () async {
-                      if (paintScreenVM.pageNumber == 0) {
-                        final byte = await controller.capture();
-                        paintScreenVM.savedImages.spiralImage = byte;
-                        paintScreenVM.pageEventSink
-                            .add(const SealedPageEvents.next());
-                        print(
-                            'spiral img ${paintScreenVM.savedImages.spiralImage}');
-                      } else if (paintScreenVM.pageNumber == 1) {
-                        final byte = await controller.capture();
-                        paintScreenVM.savedImages.waveImage = byte;
-                        paintScreenVM.pageEventSink
-                            .add(const SealedPageEvents.runModel());
-                        print(
-                            'wave img ${paintScreenVM.savedImages.waveImage}');
-                      }
-                    },
-                    icon: const Icon(Icons.navigate_next_outlined)),
-              ]),
-        ),
+                          .add(const SealedPageEvents.next());
+                      print(
+                          'spiral img ${paintScreenVM.savedImages.spiralImage}');
+                    } else if (paintScreenVM.pageNumber == 1) {
+                      final byte = await controller.capture();
+                      paintScreenVM.savedImages.waveImage = byte;
+                      paintScreenVM.pageEventSink
+                          .add(const SealedPageEvents.runModel());
+                      print('wave img ${paintScreenVM.savedImages.waveImage}');
+                    }
+                  },
+                  icon: const Icon(Icons.navigate_next_outlined)),
+            ]),
       ]),
     );
   }

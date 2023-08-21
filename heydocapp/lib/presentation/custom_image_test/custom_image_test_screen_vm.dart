@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/domain/usecase/get_user_usecase.dart';
 import 'package:heydocapp/domain/usecase/post_pic_firebase_usecase.dart';
 import 'package:heydocapp/main.dart';
+import 'package:heydocapp/presentation/custom_image_test/cusotm_result_screen.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../domain/usecase/run_model_usecase.dart';
@@ -14,15 +15,17 @@ final customImageTestScreenVMProvider = ChangeNotifierProvider.autoDispose(
         ref.watch(navigatorKeyProvider),
         ref.watch(postPicFirebaseUseCaseProvider),
         ref.watch(getUserUseCaseProvider),
-        ref.watch(runModelUseCaseProvider)));
+        ref.watch(runModelUseCaseProvider),
+        ref.watch(scaffoldMessengerKeyProvider)));
 
 class CustomImageTestScreenVM extends ChangeNotifier {
   final GlobalKey<NavigatorState> navigatorKey;
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey;
   final PostPicFirebaseUsecase postPicFirebaseUsecase;
   final GetUserUsecase getUserUsecase;
   final RunModelUseCase _runModelUsecase;
   CustomImageTestScreenVM(this.navigatorKey, this.postPicFirebaseUsecase,
-      this.getUserUsecase, this._runModelUsecase);
+      this.getUserUsecase, this._runModelUsecase, this.scaffoldMessengerKey);
 
   bool isLoading = false;
   String? spiralImageUrl;
@@ -71,17 +74,28 @@ class CustomImageTestScreenVM extends ChangeNotifier {
     toggleLoadingState();
     final user = await getUserUsecase.getUser();
     if (spiralImageUrl == null || waveImageUrl == null || user == null) {
+      toggleLoadingState();
+      scaffoldMessengerKey.currentState
+          ?.showSnackBar(const SnackBar(content: Text('please upload images')));
       return;
     }
     final result = await _runModelUsecase.runModel(
         spiralImageUrl!, waveImageUrl!, user.uid);
-    outputText = '$result';
-    // if (result == 1) {
-    //   outputText = 'YOU ARE ADVISED TO SEE A DOCTOR IMMEDEATLY';
-    // } else if (result == 0) {
-    //   outputText =
-    //       'You seem fit according to our tests. Still, if you are observing other parkinson symptoms , then we recommend you to see a doctor';
-    // }
+
+    if (result == 2) {
+      outputText = 'YOU ARE ADVISED TO SEE A DOCTOR IMMEDEATLY';
+    } else if (result == 1) {
+      outputText =
+          'You seem to be fit. Still, if you are observing other parkinson symptoms , then we recommend you to see a doctor';
+    } else {
+      outputText = 'You are healthy according to our tests!';
+    }
+    navigatorKey.currentState
+        ?.push(MaterialPageRoute(builder: (BuildContext context) {
+      return CustomResultScreen(
+        outputText: outputText ?? "Some error occured",
+      );
+    }));
     print('aapko itna parkinson hain : $result');
     toggleLoadingState();
   }

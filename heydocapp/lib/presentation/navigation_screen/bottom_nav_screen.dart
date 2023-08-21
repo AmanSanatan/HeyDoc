@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heydocapp/presentation/find%20clinics/explore_clinics.dart';
 import 'package:heydocapp/presentation/painting/paint_screen.dart';
 import 'package:heydocapp/presentation/patient_profile/pat_profile_page.dart';
 
@@ -10,7 +11,11 @@ class BottomNavScreen extends StatefulWidget {
 }
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
-  final List<Widget> pages = [const PatientProfilePage(), PaintScreen()];
+  final List<Widget> pages = [
+    const PatientProfilePage(),
+    PaintScreen(),
+    const ExploreClinics()
+  ];
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -37,6 +42,10 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.draw_outlined),
             label: 'Test',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.explore),
+            label: 'Clinics',
           ),
         ],
       ),
