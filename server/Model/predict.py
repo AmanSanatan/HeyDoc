@@ -62,7 +62,7 @@ def predict(spiralimg, waveimg):
     avg = int((sp_predict(spiralimg) + 2*wa_predict(waveimg)))
     return avg
 
-def caller():
+def caller(): 
     print(predict(os.path.join(dirname,"data\\"+str(sys.argv[1])+"_spiral.png"),os.path.join(dirname,"data\\"+str(sys.argv[1])+"_wave.png")))
     #print(predict(os.path.join(dirname,"data\\" + "uid1" +"_spiral.png"),os.path.join(dirname,"data\\"+"uid1"+"_wave.png")))
 caller()
