@@ -2,7 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/repository/http_repo_impl.dart';
 
-String baseUrl = 'http://localhost:3000';
+String baseUrl =
+    'https://7a4a-2401-4900-704a-e909-1571-cf37-1874-b623.ngrok-free.app';
 final httpRepoProvider = Provider((ref) => HttpRepoImpl());
 
 abstract class HttpRepo {

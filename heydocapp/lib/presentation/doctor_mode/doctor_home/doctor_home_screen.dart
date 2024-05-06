@@ -147,14 +147,8 @@ class DoctorHomeScreen extends ConsumerWidget {
                       child: ListView.builder(
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: Column(children: [
-                                Text(bookingList?[index].time.split(' ')[0] ??
-                                    "12:00"),
-                                Text(bookingList?[index].time.split(' ')[1] ??
-                                    "AM"),
-                              ]),
+                            leading: const CircleAvatar(
+                              backgroundColor: Colors.red,
                             ),
                             title: Text(
                               bookingList?[index].patientName ?? 'patient',

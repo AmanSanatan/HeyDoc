@@ -36,9 +36,9 @@ class AuthRepositoryImpl extends AuthRepository {
         return const AuthResponse.faliure("please select a account");
       }
     } on FirebaseAuthException catch (e) {
-      return AuthResponse.faliure(e.message ?? 'some error occured');
+      return AuthResponse.faliure(e.message ?? "some error occured");
     } catch (e) {
-      return const AuthResponse.faliure('some error occured');
+      return const AuthResponse.faliure('aye');
     }
   }
 
@@ -77,10 +77,10 @@ class AuthRepositoryImpl extends AuthRepository {
       } else {
         return const AuthResponse.faliure("please select a account");
       }
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseException catch (e) {
       return AuthResponse.faliure(e.message ?? 'some error occured');
     } catch (e) {
-      return const AuthResponse.faliure('some error occured');
+      return const AuthResponse.faliure("aye");
     }
   }
 

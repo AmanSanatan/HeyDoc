@@ -47,29 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB1rTr3wFGxMbeJUBDm22kKqy7BRylyayQ',
-    appId: '1:1048303927122:web:b1dcc59806e040f8cf448b',
-    messagingSenderId: '1048303927122',
-    projectId: 'heydoc-2f2ba',
-    authDomain: 'heydoc-2f2ba.firebaseapp.com',
-    storageBucket: 'heydoc-2f2ba.appspot.com',
+    apiKey: 'AIzaSyB6vJ6v6NfUZ5JjDbxCWhT-qzXsJJpZciA',
+    appId: '1:1026544214579:web:82942c7511ea1a93f6b946',
+    messagingSenderId: '1026544214579',
+    projectId: 'hey-doc-new',
+    authDomain: 'hey-doc-new.firebaseapp.com',
+    storageBucket: 'hey-doc-new.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBfaDqgCx7lFdspq7ZxkB7caoHVhfFyMwg',
-    appId: '1:1048303927122:android:2b9b4b9dbf2a3a03cf448b',
-    messagingSenderId: '1048303927122',
-    projectId: 'heydoc-2f2ba',
-    storageBucket: 'heydoc-2f2ba.appspot.com',
+    apiKey: 'AIzaSyAKwUdF7fRBpNLuOhhYCKw9i6GtdfclUPA',
+    appId: '1:1026544214579:android:a680f0765daa3434f6b946',
+    messagingSenderId: '1026544214579',
+    projectId: 'hey-doc-new',
+    storageBucket: 'hey-doc-new.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBFQDLYDMGBrLtrzSAkMiIIhHQzNi65Bgo',
-    appId: '1:1048303927122:ios:4732628ab3e5c546cf448b',
-    messagingSenderId: '1048303927122',
-    projectId: 'heydoc-2f2ba',
-    storageBucket: 'heydoc-2f2ba.appspot.com',
-    iosClientId: '1048303927122-ci2tmdeq96c9e0kk2jvqbtp1m4k9f2en.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAiOQMJYjp-OB1oxgkHtb9kc0x722Kv3Rk',
+    appId: '1:1026544214579:ios:fadd606c73fefd52f6b946',
+    messagingSenderId: '1026544214579',
+    projectId: 'hey-doc-new',
+    storageBucket: 'hey-doc-new.appspot.com',
     iosBundleId: 'com.example.heydocapp',
   );
+
 }

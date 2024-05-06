@@ -1,51 +1,26 @@
 {
   "project_info": {
-    "project_number": "1048303927122",
-    "project_id": "heydoc-2f2ba",
-    "storage_bucket": "heydoc-2f2ba.appspot.com"
+    "project_number": "1026544214579",
+    "project_id": "hey-doc-new",
+    "storage_bucket": "hey-doc-new.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1048303927122:android:2b9b4b9dbf2a3a03cf448b",
+        "mobilesdk_app_id": "1:1026544214579:android:a680f0765daa3434f6b946",
         "android_client_info": {
           "package_name": "com.example.heydocapp"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1048303927122-atpcfbup0a1la79fpsv3hgav9fndpppk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.heydocapp",
-            "certificate_hash": "da0247f9cc588bf8a50bdfc4b0ef3a339478cdf9"
-          }
-        },
-        {
-          "client_id": "1048303927122-lho5cat4bics2hmhkncj9rsfn8r71t74.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBfaDqgCx7lFdspq7ZxkB7caoHVhfFyMwg"
+          "current_key": "AIzaSyAKwUdF7fRBpNLuOhhYCKw9i6GtdfclUPA"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1048303927122-lho5cat4bics2hmhkncj9rsfn8r71t74.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1048303927122-ci2tmdeq96c9e0kk2jvqbtp1m4k9f2en.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.heydocapp"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

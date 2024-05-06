@@ -85,6 +85,12 @@ class BookSessionVM extends ChangeNotifier {
   void onSelectTime(TimeOfDay? selectedTime) async {
     if (selectedTime != null) {
       bookingTime = DateFormat('jm').format(timeOfDayToDateTime(selectedTime));
+      for (int i = 1; i < bookingTime.length; i++) {
+        if (bookingTime[i] == 'P' || bookingTime[i] == 'A') {
+          bookingTime =
+              "${bookingTime.substring(0, i - 1)} ${bookingTime.substring(i - 1)}";
+        }
+      }
       isTimeInPast = checkIfTimeInPast(selectedTime);
       if (isTimeInPast) {
         // bookingTime = DateFormat('jm').format(getNextStartTime());
@@ -105,15 +111,14 @@ class BookSessionVM extends ChangeNotifier {
   TimeOfDay stringToTimeOfDay(String time) {
     int hh = 0;
     if (time.endsWith('PM')) hh = 12;
-    time = time.split(' ')[0];
+    time = time.split('PM')[0];
     return TimeOfDay(
-      hour: hh +
-          int.parse(time.split(":")[0]) %
-              24, // in case of a bad time format entered manually by the user
-      minute: int.parse(time.split(":")[1]) % 60,
+      hour: hh + int.parse(time.split(":")[0]),
+      minute: int.parse(time.split(":")[1]),
     );
   }
 
+  //AM NOT ACTUALLY USING THIS FUNCTION
   DateTime diffStringToDateTime(String date, String time) {
     DateTime meetingDate = DateFormat('yMMMd').parse(date);
     DateTime meetingTime = DateFormat('jm').parse(time);
@@ -124,6 +129,7 @@ class BookSessionVM extends ChangeNotifier {
   }
 
   void makePayment() async {
+    // print(bookingTime);
     if (checkIfTimeInPast(stringToTimeOfDay(bookingTime))) {
       scaffoldMessengerKey.currentState?.showSnackBar(const SnackBar(
           content:

@@ -69,6 +69,7 @@ class PatientProfileVM extends ChangeNotifier {
     final user = await _getUserUsecase.getUser();
     patientModel = await _getPatientUsecase.getPatient(user!.uid);
     print(patientModel.toString());
+    print(patientModel?.bookings?[0].time.split(' ')[0] ?? "12:00");
     toggleLoadingState();
   }
 

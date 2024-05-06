@@ -169,24 +169,18 @@ class PatientProfilePage extends ConsumerWidget {
                       child: ListView.builder(
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: Column(children: [
-                                Text(bookingList?[index].time.split(' ')[0] ??
-                                    "12:00"),
-                                Text(bookingList?[index].time.split(' ')[1] ??
-                                    "AM"),
-                              ]),
+                            leading: const CircleAvatar(
+                              backgroundColor: Colors.red,
                             ),
                             title: Text(
-                              bookingList?[index].doctorName ?? 'doctor',
+                              'Dr. ${bookingList?[index].doctorName ?? 'doctor'}',
                               style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
                             subtitle: Text(
-                              bookingList?[index].clinicName ?? 'clinic',
+                              bookingList![index].time,
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.black,

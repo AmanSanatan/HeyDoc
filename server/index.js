@@ -1,15 +1,15 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { bookingRoute } from './routes/bookingRoute.js';
+import { clinicRoute } from './routes/clinicRoute.js';
 import { doctorRoute } from './routes/doctorRoute.js';
 import { patientRoute } from './routes/patientRoute.js';
-import { clinicRoute } from './routes/clinicRoute.js';
 import { predictRoute } from './routes/predictRoute.js';
 let app = express();
 app.listen(3000,(res)=>{
     console.log("Listening on port");
 })
-const uri = "mongodb+srv://sanatan:hackfest@cluster0.a2sbwvj.mongodb.net/heyDoc?retryWrites=true&w=majority";
+const uri = "mongodb+srv://abhinavkanogia842002:FVTLRjLNfpFykbGm@cluster0.6gznx4p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 mongoose.connect(uri,  {
         useNewUrlParser: true,
         useUnifiedTopology: true
