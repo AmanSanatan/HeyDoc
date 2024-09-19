@@ -12,7 +12,7 @@ part of 'auth_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AuthResponse {
@@ -75,20 +75,20 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
 }
 
 /// @nodoc
-abstract class _$$AuthSuccessCopyWith<$Res> {
-  factory _$$AuthSuccessCopyWith(
-          _$AuthSuccess value, $Res Function(_$AuthSuccess) then) =
-      __$$AuthSuccessCopyWithImpl<$Res>;
+abstract class _$$AuthSuccessImplCopyWith<$Res> {
+  factory _$$AuthSuccessImplCopyWith(
+          _$AuthSuccessImpl value, $Res Function(_$AuthSuccessImpl) then) =
+      __$$AuthSuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserCredential userCredential});
 }
 
 /// @nodoc
-class __$$AuthSuccessCopyWithImpl<$Res>
-    extends _$AuthResponseCopyWithImpl<$Res, _$AuthSuccess>
-    implements _$$AuthSuccessCopyWith<$Res> {
-  __$$AuthSuccessCopyWithImpl(
-      _$AuthSuccess _value, $Res Function(_$AuthSuccess) _then)
+class __$$AuthSuccessImplCopyWithImpl<$Res>
+    extends _$AuthResponseCopyWithImpl<$Res, _$AuthSuccessImpl>
+    implements _$$AuthSuccessImplCopyWith<$Res> {
+  __$$AuthSuccessImplCopyWithImpl(
+      _$AuthSuccessImpl _value, $Res Function(_$AuthSuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +96,7 @@ class __$$AuthSuccessCopyWithImpl<$Res>
   $Res call({
     Object? userCredential = null,
   }) {
-    return _then(_$AuthSuccess(
+    return _then(_$AuthSuccessImpl(
       null == userCredential
           ? _value.userCredential
           : userCredential // ignore: cast_nullable_to_non_nullable
@@ -107,8 +107,8 @@ class __$$AuthSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthSuccess implements AuthSuccess {
-  const _$AuthSuccess(this.userCredential);
+class _$AuthSuccessImpl implements AuthSuccess {
+  const _$AuthSuccessImpl(this.userCredential);
 
   @override
   final UserCredential userCredential;
@@ -119,10 +119,10 @@ class _$AuthSuccess implements AuthSuccess {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthSuccess &&
+            other is _$AuthSuccessImpl &&
             (identical(other.userCredential, userCredential) ||
                 other.userCredential == userCredential));
   }
@@ -133,8 +133,8 @@ class _$AuthSuccess implements AuthSuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthSuccessCopyWith<_$AuthSuccess> get copyWith =>
-      __$$AuthSuccessCopyWithImpl<_$AuthSuccess>(this, _$identity);
+  _$$AuthSuccessImplCopyWith<_$AuthSuccessImpl> get copyWith =>
+      __$$AuthSuccessImplCopyWithImpl<_$AuthSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -201,29 +201,29 @@ class _$AuthSuccess implements AuthSuccess {
 
 abstract class AuthSuccess implements AuthResponse {
   const factory AuthSuccess(final UserCredential userCredential) =
-      _$AuthSuccess;
+      _$AuthSuccessImpl;
 
   UserCredential get userCredential;
   @JsonKey(ignore: true)
-  _$$AuthSuccessCopyWith<_$AuthSuccess> get copyWith =>
+  _$$AuthSuccessImplCopyWith<_$AuthSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AuthFaliureCopyWith<$Res> {
-  factory _$$AuthFaliureCopyWith(
-          _$AuthFaliure value, $Res Function(_$AuthFaliure) then) =
-      __$$AuthFaliureCopyWithImpl<$Res>;
+abstract class _$$AuthFaliureImplCopyWith<$Res> {
+  factory _$$AuthFaliureImplCopyWith(
+          _$AuthFaliureImpl value, $Res Function(_$AuthFaliureImpl) then) =
+      __$$AuthFaliureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$AuthFaliureCopyWithImpl<$Res>
-    extends _$AuthResponseCopyWithImpl<$Res, _$AuthFaliure>
-    implements _$$AuthFaliureCopyWith<$Res> {
-  __$$AuthFaliureCopyWithImpl(
-      _$AuthFaliure _value, $Res Function(_$AuthFaliure) _then)
+class __$$AuthFaliureImplCopyWithImpl<$Res>
+    extends _$AuthResponseCopyWithImpl<$Res, _$AuthFaliureImpl>
+    implements _$$AuthFaliureImplCopyWith<$Res> {
+  __$$AuthFaliureImplCopyWithImpl(
+      _$AuthFaliureImpl _value, $Res Function(_$AuthFaliureImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -231,7 +231,7 @@ class __$$AuthFaliureCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$AuthFaliure(
+    return _then(_$AuthFaliureImpl(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -242,8 +242,8 @@ class __$$AuthFaliureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthFaliure implements AuthFaliure {
-  const _$AuthFaliure(this.message);
+class _$AuthFaliureImpl implements AuthFaliure {
+  const _$AuthFaliureImpl(this.message);
 
   @override
   final String message;
@@ -254,10 +254,10 @@ class _$AuthFaliure implements AuthFaliure {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthFaliure &&
+            other is _$AuthFaliureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -267,8 +267,8 @@ class _$AuthFaliure implements AuthFaliure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthFaliureCopyWith<_$AuthFaliure> get copyWith =>
-      __$$AuthFaliureCopyWithImpl<_$AuthFaliure>(this, _$identity);
+  _$$AuthFaliureImplCopyWith<_$AuthFaliureImpl> get copyWith =>
+      __$$AuthFaliureImplCopyWithImpl<_$AuthFaliureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -334,10 +334,10 @@ class _$AuthFaliure implements AuthFaliure {
 }
 
 abstract class AuthFaliure implements AuthResponse {
-  const factory AuthFaliure(final String message) = _$AuthFaliure;
+  const factory AuthFaliure(final String message) = _$AuthFaliureImpl;
 
   String get message;
   @JsonKey(ignore: true)
-  _$$AuthFaliureCopyWith<_$AuthFaliure> get copyWith =>
+  _$$AuthFaliureImplCopyWith<_$AuthFaliureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

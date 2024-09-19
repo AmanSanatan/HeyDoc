@@ -12,7 +12,7 @@ part of 'page_events.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SealedPageEvents {
@@ -81,25 +81,25 @@ class _$SealedPageEventsCopyWithImpl<$Res, $Val extends SealedPageEvents>
 }
 
 /// @nodoc
-abstract class _$$NextPageEventCopyWith<$Res> {
-  factory _$$NextPageEventCopyWith(
-          _$NextPageEvent value, $Res Function(_$NextPageEvent) then) =
-      __$$NextPageEventCopyWithImpl<$Res>;
+abstract class _$$NextPageEventImplCopyWith<$Res> {
+  factory _$$NextPageEventImplCopyWith(
+          _$NextPageEventImpl value, $Res Function(_$NextPageEventImpl) then) =
+      __$$NextPageEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$NextPageEventCopyWithImpl<$Res>
-    extends _$SealedPageEventsCopyWithImpl<$Res, _$NextPageEvent>
-    implements _$$NextPageEventCopyWith<$Res> {
-  __$$NextPageEventCopyWithImpl(
-      _$NextPageEvent _value, $Res Function(_$NextPageEvent) _then)
+class __$$NextPageEventImplCopyWithImpl<$Res>
+    extends _$SealedPageEventsCopyWithImpl<$Res, _$NextPageEventImpl>
+    implements _$$NextPageEventImplCopyWith<$Res> {
+  __$$NextPageEventImplCopyWithImpl(
+      _$NextPageEventImpl _value, $Res Function(_$NextPageEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$NextPageEvent implements NextPageEvent {
-  const _$NextPageEvent();
+class _$NextPageEventImpl implements NextPageEvent {
+  const _$NextPageEventImpl();
 
   @override
   String toString() {
@@ -107,9 +107,9 @@ class _$NextPageEvent implements NextPageEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NextPageEvent);
+        (other.runtimeType == runtimeType && other is _$NextPageEventImpl);
   }
 
   @override
@@ -185,29 +185,29 @@ class _$NextPageEvent implements NextPageEvent {
 }
 
 abstract class NextPageEvent implements SealedPageEvents {
-  const factory NextPageEvent() = _$NextPageEvent;
+  const factory NextPageEvent() = _$NextPageEventImpl;
 }
 
 /// @nodoc
-abstract class _$$PreviousPageEventCopyWith<$Res> {
-  factory _$$PreviousPageEventCopyWith(
-          _$PreviousPageEvent value, $Res Function(_$PreviousPageEvent) then) =
-      __$$PreviousPageEventCopyWithImpl<$Res>;
+abstract class _$$PreviousPageEventImplCopyWith<$Res> {
+  factory _$$PreviousPageEventImplCopyWith(_$PreviousPageEventImpl value,
+          $Res Function(_$PreviousPageEventImpl) then) =
+      __$$PreviousPageEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$PreviousPageEventCopyWithImpl<$Res>
-    extends _$SealedPageEventsCopyWithImpl<$Res, _$PreviousPageEvent>
-    implements _$$PreviousPageEventCopyWith<$Res> {
-  __$$PreviousPageEventCopyWithImpl(
-      _$PreviousPageEvent _value, $Res Function(_$PreviousPageEvent) _then)
+class __$$PreviousPageEventImplCopyWithImpl<$Res>
+    extends _$SealedPageEventsCopyWithImpl<$Res, _$PreviousPageEventImpl>
+    implements _$$PreviousPageEventImplCopyWith<$Res> {
+  __$$PreviousPageEventImplCopyWithImpl(_$PreviousPageEventImpl _value,
+      $Res Function(_$PreviousPageEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$PreviousPageEvent implements PreviousPageEvent {
-  const _$PreviousPageEvent();
+class _$PreviousPageEventImpl implements PreviousPageEvent {
+  const _$PreviousPageEventImpl();
 
   @override
   String toString() {
@@ -215,9 +215,9 @@ class _$PreviousPageEvent implements PreviousPageEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PreviousPageEvent);
+        (other.runtimeType == runtimeType && other is _$PreviousPageEventImpl);
   }
 
   @override
@@ -293,29 +293,29 @@ class _$PreviousPageEvent implements PreviousPageEvent {
 }
 
 abstract class PreviousPageEvent implements SealedPageEvents {
-  const factory PreviousPageEvent() = _$PreviousPageEvent;
+  const factory PreviousPageEvent() = _$PreviousPageEventImpl;
 }
 
 /// @nodoc
-abstract class _$$RunModelEventCopyWith<$Res> {
-  factory _$$RunModelEventCopyWith(
-          _$RunModelEvent value, $Res Function(_$RunModelEvent) then) =
-      __$$RunModelEventCopyWithImpl<$Res>;
+abstract class _$$RunModelEventImplCopyWith<$Res> {
+  factory _$$RunModelEventImplCopyWith(
+          _$RunModelEventImpl value, $Res Function(_$RunModelEventImpl) then) =
+      __$$RunModelEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RunModelEventCopyWithImpl<$Res>
-    extends _$SealedPageEventsCopyWithImpl<$Res, _$RunModelEvent>
-    implements _$$RunModelEventCopyWith<$Res> {
-  __$$RunModelEventCopyWithImpl(
-      _$RunModelEvent _value, $Res Function(_$RunModelEvent) _then)
+class __$$RunModelEventImplCopyWithImpl<$Res>
+    extends _$SealedPageEventsCopyWithImpl<$Res, _$RunModelEventImpl>
+    implements _$$RunModelEventImplCopyWith<$Res> {
+  __$$RunModelEventImplCopyWithImpl(
+      _$RunModelEventImpl _value, $Res Function(_$RunModelEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RunModelEvent implements RunModelEvent {
-  const _$RunModelEvent();
+class _$RunModelEventImpl implements RunModelEvent {
+  const _$RunModelEventImpl();
 
   @override
   String toString() {
@@ -323,9 +323,9 @@ class _$RunModelEvent implements RunModelEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RunModelEvent);
+        (other.runtimeType == runtimeType && other is _$RunModelEventImpl);
   }
 
   @override
@@ -401,5 +401,5 @@ class _$RunModelEvent implements RunModelEvent {
 }
 
 abstract class RunModelEvent implements SealedPageEvents {
-  const factory RunModelEvent() = _$RunModelEvent;
+  const factory RunModelEvent() = _$RunModelEventImpl;
 }

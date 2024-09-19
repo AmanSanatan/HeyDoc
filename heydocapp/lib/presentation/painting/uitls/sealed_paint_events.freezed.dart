@@ -12,7 +12,7 @@ part of 'sealed_paint_events.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SealedPaintEvents {
@@ -81,20 +81,20 @@ class _$SealedPaintEventsCopyWithImpl<$Res, $Val extends SealedPaintEvents>
 }
 
 /// @nodoc
-abstract class _$$PanUpdateEventCopyWith<$Res> {
-  factory _$$PanUpdateEventCopyWith(
-          _$PanUpdateEvent value, $Res Function(_$PanUpdateEvent) then) =
-      __$$PanUpdateEventCopyWithImpl<$Res>;
+abstract class _$$PanUpdateEventImplCopyWith<$Res> {
+  factory _$$PanUpdateEventImplCopyWith(_$PanUpdateEventImpl value,
+          $Res Function(_$PanUpdateEventImpl) then) =
+      __$$PanUpdateEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DragUpdateDetails dragUpdateDetails});
 }
 
 /// @nodoc
-class __$$PanUpdateEventCopyWithImpl<$Res>
-    extends _$SealedPaintEventsCopyWithImpl<$Res, _$PanUpdateEvent>
-    implements _$$PanUpdateEventCopyWith<$Res> {
-  __$$PanUpdateEventCopyWithImpl(
-      _$PanUpdateEvent _value, $Res Function(_$PanUpdateEvent) _then)
+class __$$PanUpdateEventImplCopyWithImpl<$Res>
+    extends _$SealedPaintEventsCopyWithImpl<$Res, _$PanUpdateEventImpl>
+    implements _$$PanUpdateEventImplCopyWith<$Res> {
+  __$$PanUpdateEventImplCopyWithImpl(
+      _$PanUpdateEventImpl _value, $Res Function(_$PanUpdateEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +102,7 @@ class __$$PanUpdateEventCopyWithImpl<$Res>
   $Res call({
     Object? dragUpdateDetails = null,
   }) {
-    return _then(_$PanUpdateEvent(
+    return _then(_$PanUpdateEventImpl(
       null == dragUpdateDetails
           ? _value.dragUpdateDetails
           : dragUpdateDetails // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$PanUpdateEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PanUpdateEvent implements PanUpdateEvent {
-  const _$PanUpdateEvent(this.dragUpdateDetails);
+class _$PanUpdateEventImpl implements PanUpdateEvent {
+  const _$PanUpdateEventImpl(this.dragUpdateDetails);
 
   @override
   final DragUpdateDetails dragUpdateDetails;
@@ -125,10 +125,10 @@ class _$PanUpdateEvent implements PanUpdateEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PanUpdateEvent &&
+            other is _$PanUpdateEventImpl &&
             (identical(other.dragUpdateDetails, dragUpdateDetails) ||
                 other.dragUpdateDetails == dragUpdateDetails));
   }
@@ -139,8 +139,9 @@ class _$PanUpdateEvent implements PanUpdateEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PanUpdateEventCopyWith<_$PanUpdateEvent> get copyWith =>
-      __$$PanUpdateEventCopyWithImpl<_$PanUpdateEvent>(this, _$identity);
+  _$$PanUpdateEventImplCopyWith<_$PanUpdateEventImpl> get copyWith =>
+      __$$PanUpdateEventImplCopyWithImpl<_$PanUpdateEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -213,29 +214,29 @@ class _$PanUpdateEvent implements PanUpdateEvent {
 
 abstract class PanUpdateEvent implements SealedPaintEvents {
   const factory PanUpdateEvent(final DragUpdateDetails dragUpdateDetails) =
-      _$PanUpdateEvent;
+      _$PanUpdateEventImpl;
 
   DragUpdateDetails get dragUpdateDetails;
   @JsonKey(ignore: true)
-  _$$PanUpdateEventCopyWith<_$PanUpdateEvent> get copyWith =>
+  _$$PanUpdateEventImplCopyWith<_$PanUpdateEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$PanStartEventCopyWith<$Res> {
-  factory _$$PanStartEventCopyWith(
-          _$PanStartEvent value, $Res Function(_$PanStartEvent) then) =
-      __$$PanStartEventCopyWithImpl<$Res>;
+abstract class _$$PanStartEventImplCopyWith<$Res> {
+  factory _$$PanStartEventImplCopyWith(
+          _$PanStartEventImpl value, $Res Function(_$PanStartEventImpl) then) =
+      __$$PanStartEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({DragStartDetails dragStartDetails});
 }
 
 /// @nodoc
-class __$$PanStartEventCopyWithImpl<$Res>
-    extends _$SealedPaintEventsCopyWithImpl<$Res, _$PanStartEvent>
-    implements _$$PanStartEventCopyWith<$Res> {
-  __$$PanStartEventCopyWithImpl(
-      _$PanStartEvent _value, $Res Function(_$PanStartEvent) _then)
+class __$$PanStartEventImplCopyWithImpl<$Res>
+    extends _$SealedPaintEventsCopyWithImpl<$Res, _$PanStartEventImpl>
+    implements _$$PanStartEventImplCopyWith<$Res> {
+  __$$PanStartEventImplCopyWithImpl(
+      _$PanStartEventImpl _value, $Res Function(_$PanStartEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -243,7 +244,7 @@ class __$$PanStartEventCopyWithImpl<$Res>
   $Res call({
     Object? dragStartDetails = null,
   }) {
-    return _then(_$PanStartEvent(
+    return _then(_$PanStartEventImpl(
       null == dragStartDetails
           ? _value.dragStartDetails
           : dragStartDetails // ignore: cast_nullable_to_non_nullable
@@ -254,8 +255,8 @@ class __$$PanStartEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PanStartEvent implements PanStartEvent {
-  const _$PanStartEvent(this.dragStartDetails);
+class _$PanStartEventImpl implements PanStartEvent {
+  const _$PanStartEventImpl(this.dragStartDetails);
 
   @override
   final DragStartDetails dragStartDetails;
@@ -266,10 +267,10 @@ class _$PanStartEvent implements PanStartEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PanStartEvent &&
+            other is _$PanStartEventImpl &&
             (identical(other.dragStartDetails, dragStartDetails) ||
                 other.dragStartDetails == dragStartDetails));
   }
@@ -280,8 +281,8 @@ class _$PanStartEvent implements PanStartEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PanStartEventCopyWith<_$PanStartEvent> get copyWith =>
-      __$$PanStartEventCopyWithImpl<_$PanStartEvent>(this, _$identity);
+  _$$PanStartEventImplCopyWith<_$PanStartEventImpl> get copyWith =>
+      __$$PanStartEventImplCopyWithImpl<_$PanStartEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -354,34 +355,34 @@ class _$PanStartEvent implements PanStartEvent {
 
 abstract class PanStartEvent implements SealedPaintEvents {
   const factory PanStartEvent(final DragStartDetails dragStartDetails) =
-      _$PanStartEvent;
+      _$PanStartEventImpl;
 
   DragStartDetails get dragStartDetails;
   @JsonKey(ignore: true)
-  _$$PanStartEventCopyWith<_$PanStartEvent> get copyWith =>
+  _$$PanStartEventImplCopyWith<_$PanStartEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ClearScreenEventCopyWith<$Res> {
-  factory _$$ClearScreenEventCopyWith(
-          _$ClearScreenEvent value, $Res Function(_$ClearScreenEvent) then) =
-      __$$ClearScreenEventCopyWithImpl<$Res>;
+abstract class _$$ClearScreenEventImplCopyWith<$Res> {
+  factory _$$ClearScreenEventImplCopyWith(_$ClearScreenEventImpl value,
+          $Res Function(_$ClearScreenEventImpl) then) =
+      __$$ClearScreenEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ClearScreenEventCopyWithImpl<$Res>
-    extends _$SealedPaintEventsCopyWithImpl<$Res, _$ClearScreenEvent>
-    implements _$$ClearScreenEventCopyWith<$Res> {
-  __$$ClearScreenEventCopyWithImpl(
-      _$ClearScreenEvent _value, $Res Function(_$ClearScreenEvent) _then)
+class __$$ClearScreenEventImplCopyWithImpl<$Res>
+    extends _$SealedPaintEventsCopyWithImpl<$Res, _$ClearScreenEventImpl>
+    implements _$$ClearScreenEventImplCopyWith<$Res> {
+  __$$ClearScreenEventImplCopyWithImpl(_$ClearScreenEventImpl _value,
+      $Res Function(_$ClearScreenEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ClearScreenEvent implements ClearScreenEvent {
-  const _$ClearScreenEvent();
+class _$ClearScreenEventImpl implements ClearScreenEvent {
+  const _$ClearScreenEventImpl();
 
   @override
   String toString() {
@@ -389,9 +390,9 @@ class _$ClearScreenEvent implements ClearScreenEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ClearScreenEvent);
+        (other.runtimeType == runtimeType && other is _$ClearScreenEventImpl);
   }
 
   @override
@@ -467,5 +468,5 @@ class _$ClearScreenEvent implements ClearScreenEvent {
 }
 
 abstract class ClearScreenEvent implements SealedPaintEvents {
-  const factory ClearScreenEvent() = _$ClearScreenEvent;
+  const factory ClearScreenEvent() = _$ClearScreenEventImpl;
 }
