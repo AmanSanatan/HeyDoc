@@ -68,8 +68,7 @@ class PaintScreen extends ConsumerWidget {
                         return CustomPaint(
                           size: Size.infinite,
                           painter: PathPainter(
-                              paths:
-                                  snapshot.hasData ? snapshot.data : [Path()]),
+                              path: snapshot.hasData ? snapshot.data : Path()),
                         );
                       },
                     ),

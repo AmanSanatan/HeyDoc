@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PathPainter extends CustomPainter {
-  List<Path> paths;
-  PathPainter({required this.paths});
+  Path path;
+  PathPainter({required this.path});
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
@@ -12,9 +12,7 @@ class PathPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 2;
 
-    for (var path in paths) {
-      canvas.drawPath(path, paint);
-    }
+    canvas.drawPath(path, paint);
   }
 
   @override

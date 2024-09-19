@@ -17,7 +17,7 @@ class PaintScreenVM extends ChangeNotifier {
     listenPaintEvents();
     listenPageEvents();
   }
-  List<Path> paths = [];
+  Path path = Path();
   int pageNumber = 0;
 
   final StreamController _paintEventController = StreamController.broadcast();
@@ -32,19 +32,18 @@ class PaintScreenVM extends ChangeNotifier {
     _paintEventController.stream.listen((event) {
       event.when(
         update: (DragUpdateDetails dragUpdateDetails) {
-          paths.last.lineTo(dragUpdateDetails.localPosition.dx,
+          path.lineTo(dragUpdateDetails.localPosition.dx,
               dragUpdateDetails.localPosition.dy);
-          _handlePaintEventSink.add(paths);
+          _handlePaintEventSink.add(path);
         },
         start: (DragStartDetails dragStartDetails) {
-          paths.add(Path());
-          paths.last.moveTo(dragStartDetails.localPosition.dx,
+          path.moveTo(dragStartDetails.localPosition.dx,
               dragStartDetails.localPosition.dy);
-          _handlePaintEventSink.add(paths);
+          _handlePaintEventSink.add(path);
         },
         clear: () {
-          paths = [Path()];
-          _handlePaintEventSink.add(paths);
+          path = Path();
+          _handlePaintEventSink.add(path);
         },
       );
     });
@@ -59,15 +58,15 @@ class PaintScreenVM extends ChangeNotifier {
         if (pageNumber < 1) {
           pageNumber++;
           notifyListeners();
-          paths = [Path()];
-          _handlePaintEventSink.add(paths);
+          path = Path();
+          _handlePaintEventSink.add(path);
         }
       }, previous: () {
         if (pageNumber > 0) {
           pageNumber--;
           notifyListeners();
-          paths = [Path()];
-          _handlePaintEventSink.add(paths);
+          path = Path();
+          _handlePaintEventSink.add(path);
         }
       }, runModel: () async {
         navigatorKey.currentState
