@@ -2,6 +2,7 @@ import express from 'express';
 import { Booking } from '../models/Booking.js';
 import { Doctor } from '../models/Doctor.js';
 import { Patient } from '../models/Patient.js';
+//if you want to inherit parameters of parent routes, set mergeParams to true
 const bookingRoute = express.Router({mergeParams:true});
 
 // route to get all the bookings
@@ -23,5 +24,5 @@ bookingRoute.post('/',async(req,res)=>{
     console.log("post request sent to make a new booking",booking);
     res.send(booking);
 })
-export { bookingRoute as bookingRoute };
+export { bookingRoute };
 
