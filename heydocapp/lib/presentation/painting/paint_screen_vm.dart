@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:heydocapp/main.dart';
 import 'package:heydocapp/presentation/painting/result_screen.dart';
 import 'package:heydocapp/presentation/painting/saved_images.dart';
+import 'package:heydocapp/presentation/painting/uitls/page_events.dart';
+import 'package:heydocapp/presentation/painting/uitls/sealed_paint_events.dart';
 
 final paintScreenVMProvider = ChangeNotifierProvider.autoDispose((ref) =>
     PaintScreenVM(
@@ -20,9 +22,12 @@ class PaintScreenVM extends ChangeNotifier {
   Path path = Path();
   int pageNumber = 0;
 
-  final StreamController _paintEventController = StreamController.broadcast();
-  StreamSink get paintEventSink => _paintEventController.sink;
-
+  //UI sends paint Events(with coordinates) to VM
+  final StreamController<SealedPaintEvents> _paintEventController =
+      StreamController.broadcast();
+  StreamSink<SealedPaintEvents> get paintEventSink =>
+      _paintEventController.sink;
+  //VM handles the paint events and send it to UI to draw.
   final StreamController _handlepaintEventController =
       StreamController.broadcast();
   StreamSink get _handlePaintEventSink => _handlepaintEventController.sink;
@@ -49,8 +54,9 @@ class PaintScreenVM extends ChangeNotifier {
     });
   }
 
-  final StreamController _pageEventController = StreamController.broadcast();
-  StreamSink get pageEventSink => _pageEventController.sink;
+  final StreamController<SealedPageEvents> _pageEventController =
+      StreamController.broadcast();
+  StreamSink<SealedPageEvents> get pageEventSink => _pageEventController.sink;
 
   void listenPageEvents() {
     _pageEventController.stream.listen((event) {
